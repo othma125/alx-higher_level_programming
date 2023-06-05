@@ -18,6 +18,6 @@ int check_cycle(listint_t *h)
 			return (1);
 		slow = slow->next;
 		fast = (fast->next)->next;
-	}while (fast);
+	} while (fast);
 	return (0);
 }
