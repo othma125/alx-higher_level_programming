@@ -2,5 +2,6 @@
 def uppercase(s):
     n = ord('A') - ord('a')
     for c in s:
-        print("{}".format(chr(n + ord(c)) if 97 <= ord(c) <= 122 else c), end="")
+        c = chr(n + ord(c)) if 97 <= ord(c) <= 122 else c
+        print("{}".format(c), end="")
     print()
