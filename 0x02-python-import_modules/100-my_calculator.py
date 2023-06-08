@@ -11,12 +11,12 @@ if __name__ == '__main__':
         exit(1)
     a = int(argv[1])
     b = int(argv[3])
-    print("{} {} {}".format(a, op, b), end='')
+    print(f"{a} {op} {b}", end='')
     if op == '+':
-        print(" = {}".format(c.add(a, b)))
+        print(f" = {c.add(a, b)}")
     elif op == '-':
-        print(" = {}".format(c.sub(a, b)))
+        print(f" = {c.sub(a, b)}")
     elif op == '*':
-        print(" = {}".format(c.mul(a, b)))
+        print(f" = {c.mul(a, b)}")
     else:
-        print(" = {}".format(c.div(a, b)))
+        print(f" = {c.div(a, b)}")
