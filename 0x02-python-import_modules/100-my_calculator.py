@@ -7,18 +7,18 @@ if __name__ == '__main__':
         exit(1)
     op = argv[2]
     if op == '+' or op == '-' or op == '*' or op == '/':
-        import calculator_1 as c
-
+        from calculator_1 import add, sub, mul, div
         a = int(argv[1])
         b = int(argv[3])
+        print("{} {} {}".format(a, op, b), end='')
         if op == '+':
-            print("{} {} {} = {}".format(a, op, b, c.add(a, b)))
+            print(" = {}".format(add(a, b)))
         elif op == '-':
-            print("{} {} {} = {}".format(a, op, b, c.sub(a, b)))
+            print(" = {}".format(sub(a, b)))
         elif op == '*':
-            print("{} {} {} = {}".format(a, op, b, c.mul(a, b)))
+            print(" = {}".format(mul(a, b)))
         else:
-            print("{} {} {} = {}".format(a, op, b, c.div(a, b)))
+            print(" = {}".format(div(a, b)))
     else:
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
