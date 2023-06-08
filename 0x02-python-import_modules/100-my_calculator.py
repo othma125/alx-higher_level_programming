@@ -8,15 +8,15 @@ if __name__ == '__main__':
     if op != '+' and op != '-' and op != '*' and op != '/':
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
-    from calculator_1 import add, sub, mul, div
+    import calculator_1 as c
     a = int(argv[1])
     b = int(argv[3])
     print("{} {} {}".format(a, op, b), end='')
     if op == '+':
-        print(" = {}".format(add(a, b)))
+        print(" = {}".format(c.add(a, b)))
     elif op == '-':
-        print(" = {}".format(sub(a, b)))
+        print(" = {}".format(c.sub(a, b)))
     elif op == '*':
-        print(" = {}".format(mul(a, b)))
+        print(" = {}".format(c.mul(a, b)))
     else:
-        print(" = {}".format(div(a, b)))
+        print(" = {}".format(c.div(a, b)))
