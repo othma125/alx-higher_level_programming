@@ -10,16 +10,16 @@ if __name__ == '__main__':
         exit(1)
     a = int(argv[1])
     b = int(argv[3])
-    print("{} {} {}".format(a, op, b), end='')
+    print("{} {} {} = ".format(a, op, b), end='')
     if op == '+':
         from calculator_1 import add
-        print(" = {}".format(add(a, b)))
+        print("{}".format(add(a, b)))
     elif op == '-':
         from calculator_1 import sub
-        print(" = {}".format(sub(a, b)))
+        print("{}".format(sub(a, b)))
     elif op == '*':
         from calculator_1 import mul
-        print(" = {}".format(mul(a, b)))
+        print("{}".format(mul(a, b)))
     else:
         from calculator_1 import div
-        print(" = {}".format(div(a, b)))
+        print("{}".format(div(a, b)))
