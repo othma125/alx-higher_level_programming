@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 if __name__ == '__main__':
+    """
+    How to make a script dynamic
+    """
     import sys
     print("{} arguments.".format(len(sys.argv) - 1))
     for i in range(1, len(sys.argv)):
