@@ -6,7 +6,7 @@ if __name__ == '__main__':
         print("Usage:./ 100 - my_calculator.py < a > < operator > < b >")
         sys.exit(1)
     op = sys.argv[2]
-    if op == '+' or argv[2] == '-' or op == '*' or op == '/':
+    if op == '+' or op == '-' or op == '*' or op == '/':
         from calculator_1 import add
         from calculator_1 import sub
         from calculator_1 import div
