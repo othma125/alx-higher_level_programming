@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 if __name__ == '__main__':
-    import sys
+    from sys import argv
 
-    if len(sys.argv) != 4:
+    if len(argv) != 4:
         print("Usage:./ 100 - my_calculator.py < a > < operator > < b >")
-        sys.exit(1)
-    op = sys.argv[2]
+        exit(1)
+    op = argv[2]
     if op == '+' or op == '-' or op == '*' or op == '/':
         import calculator_1 as c
 
-        a = int(sys.argv[1])
-        b = int(sys.argv[3])
+        a = int(argv[1])
+        b = int(argv[3])
         if op == '+':
             print("{} + {} = {}".format(a, b, c.add(a, b)))
         elif op == '-':
@@ -21,4 +21,4 @@ if __name__ == '__main__':
             print("{} / {} = {}".format(a, b, c.div(a, b)))
     else:
         print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
+        exit(1)
