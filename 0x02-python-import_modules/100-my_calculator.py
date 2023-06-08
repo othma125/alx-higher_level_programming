@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+from sys import argv
+import calculator_1 as c
 if __name__ == '__main__':
-    from sys import argv
     if len(argv) != 4:
         print("Usage:./ 100 - my_calculator.py < a > < operator > < b >")
         exit(1)
@@ -8,7 +9,6 @@ if __name__ == '__main__':
     if op != '+' and op != '-' and op != '*' and op != '/':
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
-    import calculator_1 as c
     a = int(argv[1])
     b = int(argv[3])
     print("{} {} {}".format(a, op, b), end='')
