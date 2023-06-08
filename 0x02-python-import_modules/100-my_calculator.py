@@ -7,21 +7,18 @@ if __name__ == '__main__':
         sys.exit(1)
     op = sys.argv[2]
     if op == '+' or op == '-' or op == '*' or op == '/':
-        from calculator_1 import add
-        from calculator_1 import sub
-        from calculator_1 import div
-        from calculator_1 import mul
+        import calculator_1 as c
 
         a = int(sys.argv[1])
         b = int(sys.argv[3])
         if op == '+':
-            print("{} + {} = {}".format(a, b, add(a, b)))
+            print("{} + {} = {}".format(a, b, c.add(a, b)))
         elif op == '-':
-            print("{} - {} = {}".format(a, b, sub(a, b)))
+            print("{} - {} = {}".format(a, b, c.sub(a, b)))
         elif op == '*':
-            print("{} * {} = {}".format(a, b, mul(a, b)))
+            print("{} * {} = {}".format(a, b, c.mul(a, b)))
         else:
-            print("{} / {} = {}".format(a, b, div(a, b)))
+            print("{} / {} = {}".format(a, b, c.div(a, b)))
     else:
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
