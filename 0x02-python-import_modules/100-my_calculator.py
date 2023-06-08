@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-from sys import argv
-import calculator_1 as c
 if __name__ == '__main__':
+    from sys import argv
     if len(argv) != 4:
         print("Usage:./ 100 - my_calculator.py < a > < operator > < b >")
         exit(1)
@@ -11,12 +10,16 @@ if __name__ == '__main__':
         exit(1)
     a = int(argv[1])
     b = int(argv[3])
-    print(f"{a} {op} {b}", end='')
+    print("{} {} {}".format(a, op, b), end='')
     if op == '+':
-        print(f" = {c.add(a, b)}")
+        from calculator_1 import add
+        print(" = {}".format(add(a, b)))
     elif op == '-':
-        print(f" = {c.sub(a, b)}")
+        from calculator_1 import sub
+        print(" = {}".format(sub(a, b)))
     elif op == '*':
-        print(f" = {c.mul(a, b)}")
+        from calculator_1 import mul
+        print(" = {}".format(mul(a, b)))
     else:
-        print(f" = {c.div(a, b)}")
+        from calculator_1 import div
+        print(" = {}".format(div(a, b)))
