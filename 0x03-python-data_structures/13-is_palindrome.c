@@ -3,7 +3,7 @@
 
 /**
  * add_node - check the code
- * @h: listheader
+ * @h: list header
  * @n: value to add
  * Return: new node
  */
@@ -33,12 +33,12 @@ int is_palindrome(listint_t **h)
 		return (c);
 	while (node)
 	{
-		stk = add_node(&stk, node->n);
+		add_node(&stk, node->n);
 		node = node->next;
 	}
 	node = *h;
 	tmp = stk;
-	while (node)
+	while (*h)
 	{
 		if (node->n != tmp->n)
 		{
