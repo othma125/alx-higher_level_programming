@@ -5,9 +5,9 @@
  * add_node - check the code
  * @h: listheader
  * @n: value to add
- * Return: none
+ * Return: new node
  */
-void *add_node(listint_t **h, int n)
+listint_t *add_node(listint_t **h, int n)
 {
 	listint_t *new_node = malloc(sizeof(listint_t));
 
@@ -16,6 +16,7 @@ void *add_node(listint_t **h, int n)
 	new_node->n = n;
 	new_node->next = *h;
 	*h = new_node;
+	return (new_node);
 }
 /**
  * is_palindrome - check code
@@ -32,7 +33,7 @@ int is_palindrome(listint_t **h)
 		return (c);
 	while (node)
 	{
-		add_node(&stk, node->n);
+		stk = add_node(&stk, node->n);
 		node = node->next;
 	}
 	node = *h;
