@@ -27,7 +27,7 @@ int is_palindrome(listint_t **h)
 {
 	listint_t *node = *h, *tmp;
 	listint_t *stk = NULL;
-	int c = 1;
+	int c = 1, len = 0, i = 0;
 
 	if (h == NULL || *h == NULL)
 		return (c);
@@ -35,10 +35,11 @@ int is_palindrome(listint_t **h)
 	{
 		add_node(&stk, node->n);
 		node = node->next;
+		len++;
 	}
 	node = *h;
 	tmp = stk;
-	while (node)
+	while (node && 2 * i < len)
 	{
 		if (node->n != tmp->n)
 		{
@@ -47,6 +48,7 @@ int is_palindrome(listint_t **h)
 		}
 		tmp = tmp->next;
 		node = node->next;
+		i++;
 	}
 	free_listint(stk);
 	return (c);
