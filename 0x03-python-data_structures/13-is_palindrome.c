@@ -38,7 +38,7 @@ int is_palindrome(listint_t **h)
 	}
 	node = *h;
 	tmp = stk;
-	while (*h)
+	while (node)
 	{
 		if (node->n != tmp->n)
 		{
