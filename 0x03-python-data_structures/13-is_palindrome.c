@@ -1,3 +1,22 @@
+#include "lists.h"
+#include <stdlib.h>
+
+/**
+ * add_node - check the code
+ * @h: listheader
+ * @n: value to add
+ * Return: none
+ */
+void *add_node(listint_t **h, int n)
+{
+	listint_t *new_node = malloc(sizeof(listint_t));
+
+	if (new_node == NULL)
+		return (NULL);
+	new_node->n = n;
+	new_node->next = *h;
+	*h = new_node;
+}
 /**
  * is_palindrome - check code
  * @h: pointer to head of list
@@ -5,9 +24,29 @@
  */
 int is_palindrome(listint_t **h)
 {
-	listint_t* node = *h;
+	listint_t *node = *h, *tmp;
+	listint_t *stk = NULL;
+	int c = 1;
 
 	if (h == NULL || *h == NULL)
-		return (1);
-	
+		return (c);
+	while (node)
+	{
+		add_node(&stk, node->n);
+		node = node->next;
+	}
+	node = *h;
+	tmp = stk;
+	while (node)
+	{
+		if (node->n != tmp->n)
+		{
+			c = 0;
+			break;
+		}
+		tmp = tmp->next;
+		node = node->next;
+	}
+	free_listint(stk);
+	return (c);
 }
