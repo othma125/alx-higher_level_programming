@@ -1,55 +1,48 @@
 #include "lists.h"
-#include <stdlib.h>
 
 /**
- * add_node - check the code
- * @h: list header
- * @n: value to add
- * Return: new node
+ * reverse_listint - reverses a list
+ * @head: list head
  */
-listint_t *add_node(listint_t **h, int n)
+void reverse_listint(listint_t **head)
 {
-	listint_t *new_node = malloc(sizeof(listint_t));
+	listint_t *prev = NULL, *current = *head, *next = NULL;
 
-	if (new_node == NULL)
-		return (NULL);
-	new_node->n = n;
-	new_node->next = *h;
-	*h = new_node;
-	return (new_node);
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*head = prev;
 }
+
 /**
  * is_palindrome - check code
- * @h: pointer to head of list
+ * @h: list head
  * Return: 0 or 1
  */
 int is_palindrome(listint_t **h)
 {
-	listint_t *node = *h, *tmp;
-	listint_t *stk = NULL;
-	int c = 1, len = 0, i = 0;
+	listint_t *slow = *h, *fast = *h, *rev_list;
 
-	if (h == NULL || *h == NULL)
-		return (c);
-	while (node)
+	if (*h == NULL)
+		return (1);
+	while (fast && fast->next)
 	{
-		add_node(&stk, node->n);
-		node = node->next;
-		len++;
+		slow = slow->next;
+		fast = fast->next->next;
 	}
-	node = *h;
-	tmp = stk;
-	while (node && 2 * i < len)
+	rev_list = fast ? slow->next : slow;
+	reverse_listint(&rev_list);
+	slow = *h;
+	while (rev_list && slow)
 	{
-		if (node->n != tmp->n)
-		{
-			c = 0;
-			break;
-		}
-		tmp = tmp->next;
-		node = node->next;
-		i++;
+		if (slow->n != rev_list->n)
+			return (0);
+		rev_list = rev_list->next;
+		slow = slow->next;
 	}
-	free_listint(stk);
-	return (c);
+	return (1);
 }
