@@ -1,6 +1,4 @@
 #include <Python.h>
-#include <string.h>
-#include <stdio.h>
 
 /**
  * print_python_bytes - check code
