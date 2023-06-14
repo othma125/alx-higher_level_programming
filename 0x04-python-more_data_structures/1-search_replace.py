@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-def number_keys(a_dictionary):
-    return len(a_dictionary)
+def search_replace(my_list, search, replace):
+    return list(map(lambda x: replace if x == search else x, my_list))
