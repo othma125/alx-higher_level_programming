@@ -9,10 +9,10 @@
 void print_python_bytes(PyObject *p)
 {
 	char *str;
-	long int size, i, l;
+	long int size, j, l;
 
 	printf("[.] bytes object info\n");
-	if (!PyBytes_Check(p))
+	if (PyBytes_Check(p) == NULL)
 	{
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
@@ -23,8 +23,8 @@ void print_python_bytes(PyObject *p)
 	printf("  trying string: %s\n", str);
 	l = size >= 10 ? 10 : size + 1;
 	printf("  first %ld bytes:", l);
-	for (i = 0; i < l; i++)
-		printf(" %02x", str[i] >= 0 ? str[i] : 256 + str[i]);
+	for (j = 0; j < l; j++)
+		printf(" %02x", str[j] >= 0 ? str[j] : 256 + str[j]);
 	printf("\n");
 }
 
