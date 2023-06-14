@@ -20,7 +20,10 @@ void print_python_bytes(PyObject *p)
 	PyBytes_AsStringAndSize(p, &str, &size);
 	printf("  size: %li\n", size);
 	printf("  trying string: %s\n", str);
-	printf("  first %d bytes:", (size >= 10 ? 10 : ++size));
+	if (size >= 10)
+		printf("  first 10 bytes:");
+	else
+		printf("  first %lu bytes:", size + 1);
 	for (i = 0; i <= size && i < 10; i++)
 		printf(" %02hhx", str[i]);
 	printf("\n");
