@@ -2,4 +2,4 @@
 def uniq_add(my_list=[]):
     if not my_list:
         return 0
-    return len(set(my_list))
+    return sum(set(my_list))
