@@ -37,7 +37,6 @@ void print_python_list(PyObject *p)
 {
 	long int size;
 	long int j;
-	PyListObject *list;
 	PyObject *obj;
 
 	size = ((PyVarObject *)(p))->ob_size;
