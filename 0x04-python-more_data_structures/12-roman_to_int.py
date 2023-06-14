@@ -10,11 +10,9 @@ def roman_to_int(s):
             new_value = ro_char[x]
         elif new_value >= ro_char[x]:
             integer += ro_char[x]
-            continue
         else:
             integer -= new_value
             new_value = ro_char[x]
-            continue
         integer += new_value
     return integer
 roman_number = "X"

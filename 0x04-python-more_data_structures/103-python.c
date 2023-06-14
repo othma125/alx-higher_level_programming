@@ -13,18 +13,18 @@ void print_python_bytes(PyObject *p)
 
 	printf("[.] bytes object info\n");
 	if (PyBytes_Check(p) == NULL)
-	{
 		printf("  [ERROR] Invalid Bytes Object\n");
-		return;
+	else
+	{
+		PyBytes_AsStringAndSize(p, &s, &len);
+		printf("  size: %lu\n", len);
+		printf("  trying string: %s\n", s);
+		len = len > 10 ? 10 : len + 1;
+		printf("  first %lu bytes: ", len);
+		for (i = 0; i < len - 1; i++)
+			printf("%02x ", s[i] & 0xff);
+		printf("%02x\n", s[len - 1] & 0xff);
 	}
-	PyBytes_AsStringAndSize(p, &s, &len);
-	printf("  size: %lu\n", len);
-	printf("  trying string: %s\n", s);
-	len = len > 10 ? 10 : len + 1;
-	printf("  first %lu bytes: ", len);
-	for (i = 0; i < len - 1; i++)
-		printf("%02x ", s[i] & 0xff);
-	printf("%02x\n", s[len - 1] & 0xff);
 }
 /**
  * print_python_list - check code
