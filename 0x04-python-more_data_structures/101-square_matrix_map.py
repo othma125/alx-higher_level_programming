@@ -2,4 +2,4 @@
 def square_matrix_map(matrix=[]):
     if not matrix:
         return None
-    return [list(map(lambda x: x**2, row)) for row in matrix]
+    return [[x**2 for x in row] for row in matrix]
