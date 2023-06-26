@@ -5,10 +5,11 @@ def safe_print_list(l=[], x=0):
         if length < x:
             try:
                 print("{}".format(element), end='')
-                length += 1
             except IndexError:
                 print()
                 break
+            else:
+                length += 1
     else:
         print()
     return length
