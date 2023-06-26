@@ -60,7 +60,6 @@ void print_python_bytes(PyObject *p)
 		printf("%c", j == size - 1 ? '\n' : ' ');
 	}
 }
-
 /**
  * print_python_float - check code
  * @p: python list object.
@@ -69,7 +68,7 @@ void print_python_float(PyObject *p)
 {
 	char *buffer = NULL;
 	PyFloatObject *float_obj = (PyFloatObject *)p;
-  
+
 	fflush(stdout);
 	printf("[.] float object info\n");
 	if (strcmp(p->ob_type->tp_name, "float"))
