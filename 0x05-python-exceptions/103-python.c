@@ -5,13 +5,13 @@
  */
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t size, allocated, i;
+	Py_ssize_t size, allctd, i;
 	const char *type;
 	PyVarObject *var_obj = (PyVarObject *)p;
 	PyListObject *list = (PyListObject *)p;
 
 	size = var_obj->ob_size;
-	allocated = list->allocated;
+	allctd = list->allocated;
 	fflush(stdout);
 	printf("[*] Python list info\n");
 	if (strcmp(p->ob_type->tp_name, "list"))
@@ -20,7 +20,7 @@ void print_python_list(PyObject *p)
 		return;
 	}
 	printf("[*] Size of the Python List = %ld\n", size);
-	printf("[*] Allocated = %ld\n", allocated);
+	printf("[*] Allocated = %ld\n", allctd);
 	for (i = 0; i < size; i++)
 	{
 		type = list->ob_item[i]->ob_type->tp_name;
