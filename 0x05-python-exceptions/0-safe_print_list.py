@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-def safe_print_list(l=[], x=0):
+def safe_print_list(lst=[], x=0):
     length = 0
-    for element in l:
+    for element in lst:
         if length < x:
             try:
                 print("{}".format(element), end='')

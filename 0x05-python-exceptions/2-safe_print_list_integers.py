@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-def safe_print_list_integers(l=[], x=0):
+def safe_print_list_integers(lst=[], x=0):
     length = 0
     for i in range(x):
-        element = l[i]
+        element = lst[i]
         try:
             print("{:d}".format(element), end='')
         except (ValueError, TypeError):
