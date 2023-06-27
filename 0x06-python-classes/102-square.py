@@ -49,7 +49,7 @@ class Square:
 
     def __ge__(self, other):
         """ >= """
-        return other >= self
+        return self.area() >= other.area()
 
     def __lt__(self, other):
         """ < """
