@@ -12,11 +12,8 @@ class Square:
         if n < 0:
             raise ValueError('size must be >= 0')
         self.__size = n
-        if type(position) is not tuple or len(position) != 2:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if type(position[0]) is not int or type(position[-1]) is not int:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if position[0] < 0 or position[-1] < 0:
+        if type(position) is not tuple or len(position) != 2 or any(type(num) is not int for num in position) or any(
+                num < 0 for num in position):
             raise TypeError('position must be a tuple of 2 positive integers')
         self.__position = position
 
@@ -46,11 +43,8 @@ class Square:
     @position.setter
     def position(self, position):
         """position setter"""
-        if type(position) is not tuple or len(position) != 2:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if type(position[0]) is not int or type(position[-1]) is not int:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        if position[0] < 0 or position[-1] < 0:
+        if type(position) is not tuple or len(position) != 2 or any(type(num) is not int for num in position) or any(
+                num < 0 for num in position):
             raise TypeError('position must be a tuple of 2 positive integers')
         self.__position = position
 
@@ -58,20 +52,17 @@ class Square:
         """print square with # and spaces"""
         if self.__size == 0:
             print()
-        for _ in range(self.position[-1]):
+        for _ in range(self.__position[-1]):
             print()
-        for _ in range(self.size):
-            print(" " * self.position[0], end="")
-            print("#" * self.size)
+        for _ in range(self.__size):
+            print(" " * self.__position[0], end="")
+            print("#" * self.__size)
 
     def __str__(self):
         """print square with # and spaces"""
-        if self.__size == 0:
-            print()
-            return ''
-        for _ in range(self.position[-1]):
-            print()
-        for _ in range(self.size):
-            print(" " * self.position[0], end="")
-            print("#" * self.size)
-        return ''
+        s = '\n' * self.position[-1]
+        for _ in range(self.__size):
+            s += " " * self.__position[0]
+            s += "#" * self.__size
+            s += '\n'
+        return s
