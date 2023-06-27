@@ -55,7 +55,7 @@ class Square:
         self.__position = position
 
     def my_print(self):
-        """print square with #"""
+        """print square with # and spaces"""
         if self.__size == 0:
             print()
         for _ in range(self.size):
