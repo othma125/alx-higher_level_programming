@@ -62,7 +62,7 @@ class Square:
 
     def __str__(self):
         """print square with # and spaces"""
-        s = '\n' * self.position[-1]
+        s = '' if self.__size == 0 else '\n' * self.__position[-1]
         for i in range(self.__size):
             s += ' ' * self.__position[0]
             s += '#' * self.__size
