@@ -48,13 +48,12 @@ class SinglyLinkedList:
 
     def __str__(self):
         """to string method"""
-        s = ''
+        s = []
         node: Node = self.__head
         while node is not None:
-            s += str(node.data)
-            s += '\n'
+            s.append(str(node.data))
             node = node.next_node
-        return s
+        return '\n'.join(s)
 
     def sorted_insert(self, value):
         """public method that insert a new node to the list in sorted way"""
