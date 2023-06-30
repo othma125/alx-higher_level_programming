@@ -26,5 +26,4 @@ def matrix_divided(matrix, div):
             else:
                 raise TypeError(msg)
         result.append(new_row)
-    # return [list(map(lambda x: round(x / div, 2), row)) for row in matrix]
     return result
