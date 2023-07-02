@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""add two integers module
-    if the a and b are not integers an exception is thrown
-    if a or b are floats only the floor is taken into consideration
-    otherwise the sum is returned
+"""Multiplication of two matrix module
 """
 
 
