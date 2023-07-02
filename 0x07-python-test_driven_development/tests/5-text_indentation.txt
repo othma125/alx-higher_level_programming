@@ -26,10 +26,6 @@
     <BLANKLINE>
     We just printed three new lines.
     <BLANKLINE>
-    >>> text_indentation("A sneaky \n new line.")
-    A sneaky
-    new line.
-    <BLANKLINE>
     >>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing "
     ... "elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas "
     ... "commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, "
@@ -70,10 +66,17 @@
     Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
     >>> text_indentation(7)
     Traceback (most recent call last):
+    ...
     TypeError: text must be a string
     >>> text_indentation({"one": 1, "two": 2})
     Traceback (most recent call last):
+    ...
     TypeError: text must be a string
     >>> text_indentation(None)
     Traceback (most recent call last):
+    ...
     TypeError: text must be a string
+    >>> text_indentation("A sneaky \n new line.")
+    A sneaky
+    new line.
+    <BLANKLINE>

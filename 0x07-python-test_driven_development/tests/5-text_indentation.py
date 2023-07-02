@@ -15,14 +15,25 @@ def text_indentation(text):
     index = 0
     while index < len(text) and text[index] == ' ':
         index += 1
+    s = []
     while index < len(text):
-        print(text[index], end="")
-        if text[index] == "\n" or text[index] in ".?:":
+        s.append(text[index])
+        if text[index] in ".?:\n":
             if text[index] in ".:?":
-                print()
-                print()
+                s.append('\n')
+                s.append('\n')
+            elif text[index] == '\n':
+                i = -2
+                try:
+                    while s[i] == ' ':
+                        del s[i]
+                        i -= 1
+                except IndexError:
+                    pass
             index += 1
             while index < len(text) and text[index] == ' ':
                 index += 1
             continue
         index += 1
+    for c in s:
+        print(c, end='')
