@@ -13,13 +13,30 @@ def matrix_mul(m_a, m_b):
     :return: new matrix
     :rtype: list of lists
     """
-    if type(a) not in [int, float]:
-        raise TypeError('a must be an integer')
-    if type(b) not in [int, float]:
-        raise TypeError('b must be an integer')
-    if a == float('NaN') or b == float('NaN'):
-        raise ValueError('cannot convert float NaN to integer')
-    s = int(a) + int(b)
-    if s == a or s == b:
-        raise OverflowError('cannot convert float infinity to integer')
-    return s
+    if m_a == [] or m_a == [[]]:
+        raise ValueError("m_a can't be empty")
+    if m_b == [] or m_b == [[]]:
+        raise ValueError("m_b can't be empty")
+    if type(m_a) is not list:
+        raise TypeError("m_a must be a list")
+    if type(m_b) is not list:
+        raise TypeError("m_b must be a list")
+    if any(type(row) is not list for row in m_a):
+        raise TypeError("m_a must be a list of lists")
+    if any(type(row) is not list for row in m_b):
+        raise TypeError("m_b must be a list of lists")
+    if any(type(element) not in (int, float)
+           for row in m_a for element in row):
+        raise TypeError("m_a should contain only integers or floats")
+    if any(type(element) not in (int, float)
+           for row in m_b for element in row):
+        raise TypeError("m_b should contain only integers or floats")
+    if any(len(row) != len(m_a[0]) for row in m_a):
+        raise TypeError("each row of m_a must should be of the same size")
+    if any(len(row) != len(m_b[0]) for row in m_b):
+        raise TypeError("each row of m_b must should be of the same size")
+    if len(m_a[0]) != len(m_b):
+        raise ValueError("m_a and m_b can't be multiplied")
+    result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
+
+    return result
