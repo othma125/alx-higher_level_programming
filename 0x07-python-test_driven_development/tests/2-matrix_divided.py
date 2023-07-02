@@ -3,7 +3,7 @@
 """
 
 
-def matrix_divided(matrix, div):
+def matrix_divided(matrix=None, div=1):
     """Function that divide elements of a matrix by a number
     """
     if type(div) not in [int, float]:
