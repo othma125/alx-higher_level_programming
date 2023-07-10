@@ -20,8 +20,9 @@ class BaseGeometry:
 
 
 class Rectangle(BaseGeometry):
+    """ Rectangle class"""
     def __init__(self, width, height):
-        super().__init__()
+        """ constructor"""
         self.integer_validator('width', width)
         self.__width = width
         self.integer_validator('height', height)
