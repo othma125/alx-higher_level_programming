@@ -5,7 +5,7 @@ for preventing dynamic attributes creation
 """
 
 
-class LockedClass():
+class LockedClass:
     """class to prevent dynamic attributes creation"""
     __slots__ = ['first_name']
 
