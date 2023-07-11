@@ -4,10 +4,7 @@
 
 def pascal_triangle(n):
     """
-    return dir(obj)
-    :param obj:
-    :type obj:
-    :return: dir(obj)
+    return pascal triangle
     :rtype: list
     """
     if n <= 0:
