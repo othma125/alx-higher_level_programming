@@ -12,6 +12,6 @@ def append_write(filename="", text=""):
     :return:
     :rtype:
     """
-    with open(filename, 'a', encoding="utf-8") as f:
+    with open(filename, mode='a', encoding="utf-8") as f:
         print(text, file=f, end='')
         return len(text)

@@ -12,6 +12,6 @@ def write_file(filename="", text=""):
     :return:
     :rtype:
     """
-    with open(filename, 'w', encoding="utf-8") as f:
+    with open(filename, mode='w', encoding="utf-8") as f:
         print(text, file=f, end='')
         return len(text)
