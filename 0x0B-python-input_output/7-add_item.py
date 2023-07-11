@@ -3,13 +3,13 @@
 
 from sys import argv
 if __name__ == "__main__":
+    """main function"""
     save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
     load_from_json_file = __import__('6-load_from_json_file')\
         .load_from_json_file
-    from json.decoder import JSONDecodeError
     try:
         items = load_from_json_file("add_item.json")
-    except (FileNotFoundError, JSONDecodeError):
+    except FileNotFoundError:
         items = []
     for item in argv[1:]:
         items.append(item)
