@@ -21,4 +21,3 @@ def append_after(filename="", search_string="", new_string=""):
             txt += line + (new_string if search_string in line else '')
     with open(filename, mode='w', encoding="utf-8") as f:
         print(txt, file=f, end='')
-append_after("append_after_100.txt", "Python", "\"C is fun!\"\n")
