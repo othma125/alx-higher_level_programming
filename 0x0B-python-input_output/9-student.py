@@ -9,8 +9,6 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self, attrs=None):
+    def to_json(self):
         """dictionary description with simple data structure"""
-        if type(attrs) == list and all(type(att) == str for att in attrs):
-            return {att: getattr(self, att) for att in attrs if hasattr(self, att)}
         return self.__dict__
