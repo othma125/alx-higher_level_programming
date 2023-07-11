@@ -10,6 +10,5 @@ if __name__ == "__main__":
     except FileNotFoundError:
         items = []
     from sys import argv
-    for item in argv[1:]:
-        items.append(item)
+    items.extend(argv[1:])
     save_to_json_file(items, "add_item.json")
