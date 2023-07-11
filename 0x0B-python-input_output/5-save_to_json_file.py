@@ -9,5 +9,5 @@ def save_to_json_file(my_obj, filename):
     :rtype: str
     """
     with open(file=filename, mode='w') as file:
-        from json import dumps
-        print(dumps(my_obj), file=file, end='')
+        from json import dump
+        dump(my_obj, file)
