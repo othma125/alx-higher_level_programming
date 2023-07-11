@@ -15,3 +15,9 @@ class Student:
             return {att: getattr(self, att) for att in attrs
                     if hasattr(self, att)}
         return self.__dict__
+
+    def reload_from_json(self, json):
+        """from to json dict to obj
+        """
+        for att, value in json.items():
+            setattr(self, att, value)
