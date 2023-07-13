@@ -29,10 +29,10 @@ class TestRectangleMethods(TestCase):
         self.assertEqual(r.y, 5)
         self.assertEqual(r.id, 4)
         r = Rectangle(1, 1)
-        self.assertEqual(False, r is Rectangle(1, 1))
-        self.assertEqual(False, r.id == Rectangle(1, 1).id)
+        self.assertFalse(r is Rectangle(1, 1))
+        self.assertFalse(r.id == Rectangle(1, 1).id)
         r = Rectangle(1, 1)
-        self.assertEqual(True, isinstance(r, Base))
+        self.assertTrue(isinstance(r, Base))
         r = Rectangle(4, 5)
         self.assertEqual(r.area(), 20)
         r = Rectangle(2, 2)
@@ -74,8 +74,8 @@ class TestRectangleMethods(TestCase):
             Rectangle("2", 2, 2, 2, 2)
         with self.assertRaises(TypeError):
             Rectangle(2, "2", 2, 2, 2)
-        # with self.assertRaises(TypeError):
-        #     Rectangle(2, 2, "2", 2, 2)
+        with self.assertRaises(TypeError):
+            Rectangle(2, 2, "2", 2, 2)
         with self.assertRaises(TypeError):
             Rectangle(2, 2, 2, "2", 2)
 
@@ -93,105 +93,105 @@ class TestRectangleMethods(TestCase):
     def test_09display(self):
         """ Test string printed """
         r = Rectangle(2, 5)
-        res = "##\n##\n##\n##\n##\n"
+        output = "##\n##\n##\n##\n##\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(2, 2)
-        res = "##\n##\n"
+        output = "##\n##\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r.width = 5
-        res = "#####\n#####\n"
+        output = "#####\n#####\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(5, 4, 1, 1)
-        res = "\n #####\n #####\n #####\n #####\n"
+        output = "\n #####\n #####\n #####\n #####\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(3, 2)
-        res = "###\n###\n"
+        output = "###\n###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r.x = 4
-        res = "    ###\n    ###\n"
+        output = "    ###\n    ###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r.y = 2
-        res = "\n\n    ###\n    ###\n"
+        output = "\n\n    ###\n    ###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             r.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
 
     def test_10str(self):
         """ Test __str__ return value """
         r = Rectangle(2, 5, 2, 4)
-        res = "[Rectangle] (18) 2/4 - 2/5\n"
+        output = "[Rectangle] (18) 2/4 - 2/5\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(3, 2, 8, 8, 10)
-        res = "[Rectangle] (10) 8/8 - 3/2\n"
+        output = "[Rectangle] (10) 8/8 - 3/2\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r.id = 1
         r.width = 7
         r.height = 15
-        res = "[Rectangle] (1) 8/8 - 7/15\n"
+        output = "[Rectangle] (1) 8/8 - 7/15\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(5, 10)
-        res = "[Rectangle] (19) 0/0 - 5/10\n"
+        output = "[Rectangle] (19) 0/0 - 5/10\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(25, 86, 4, 7)
-        res = "[Rectangle] (20) 4/7 - 25/86\n"
+        output = "[Rectangle] (20) 4/7 - 25/86\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(1, 1, 1, 1)
-        res = "[Rectangle] (21) 1/1 - 1/1\n"
+        output = "[Rectangle] (21) 1/1 - 1/1\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(3, 3)
-        res = "[Rectangle] (22) 0/0 - 3/3"
-        self.assertEqual(r.__str__(), res)
+        output = "[Rectangle] (22) 0/0 - 3/3"
+        self.assertEqual(r.__str__(), output)
 
     def test_11to_dictionary(self):
         """ Test dictionary returned """
         r = Rectangle(1, 2, 3, 4, 1)
-        res = "[Rectangle] (1) 3/4 - 1/2\n"
+        output = "[Rectangle] (1) 3/4 - 1/2\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         self.assertEqual(r.width, 1)
         self.assertEqual(r.height, 2)
         self.assertEqual(r.x, 3)
         self.assertEqual(r.y, 4)
         self.assertEqual(r.id, 1)
-        res = "<class 'dict'>\n"
+        output = "<class 'dict'>\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(type(r.to_dictionary()))
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r = Rectangle(2, 2, 2, 2)
-        res = "[Rectangle] (23) 2/2 - 2/2\n"
+        output = "[Rectangle] (23) 2/2 - 2/2\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r2 = Rectangle(5, 7)
-        res = "[Rectangle] (24) 0/0 - 5/7\n"
+        output = "[Rectangle] (24) 0/0 - 5/7\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(r2)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         r1_dictionary = r.to_dictionary()
         r2.update(**r1_dictionary)
         self.assertEqual(r.width, r2.width)
@@ -199,21 +199,10 @@ class TestRectangleMethods(TestCase):
         self.assertEqual(r.x, r2.x)
         self.assertEqual(r.y, r2.y)
         self.assertEqual(r.id, r2.id)
-        res = "<class 'dict'>\n"
+        output = "<class 'dict'>\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(type(r1_dictionary))
-            self.assertEqual(str_out.getvalue(), res)
-
-    # def test_12dict_to_json(self):
-    #     """ Test Dictionary to JSON string """
-    #     r1 = Rectangle(2, 2)
-    #     dictionary = r1.to_dictionary()
-    #     json_dictionary = Base.to_json_string([dictionary])
-    #     res = "[{}]\n".format(dictionary.__str__())
-    #
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(json_dictionary)
-    #         self.assertEqual(str_out.getvalue(), res.replace("'", "\""))
+            self.assertEqual(str_out.getvalue(), output)
 
     def test_13check_value(self):
         """ Test args passed """
@@ -265,3 +254,14 @@ class TestRectangleMethods(TestCase):
     #     loutput = Rectangle.load_from_file()
     #     for i in range(len(linput)):
     #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+
+    # def test_17dict_to_json(self):
+    #     """ Test Dictionary to JSON string """
+    #     r1 = Rectangle(2, 2)
+    #     dictionary = r1.to_dictionary()
+    #     json_dictionary = Base.to_json_string([dictionary])
+    #     res = "[{}]\n".format(dictionary.__str__())
+    #
+    #     with patch('sys.stdout', new=StringIO()) as str_out:
+    #         print(json_dictionary)
+    #         self.assertEqual(str_out.getvalue(), res.replace("'", "\""))

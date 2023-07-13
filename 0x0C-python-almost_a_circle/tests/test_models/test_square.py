@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Module for test Square class """
-import unittest
 from io import StringIO
 from unittest import TestCase
 from unittest.mock import patch
@@ -9,7 +8,7 @@ from models.rectangle import Rectangle
 from models.base import Base
 
 
-class TestSquareMethods(unittest.TestCase):
+class TestSquareMethods(TestCase):
     """ Suite to test Square class """
 
     def setUp(self):
@@ -99,136 +98,136 @@ class TestSquareMethods(unittest.TestCase):
     def test_09display(self):
         """ Test string printed """
         sq = Square(2)
-        res = "##\n##\n"
+        output = "##\n##\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(4)
-        res = "####\n####\n####\n####\n"
+        output = "####\n####\n####\n####\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq.size = 5
-        res = "#####\n#####\n#####\n#####\n#####\n"
+        output = "#####\n#####\n#####\n#####\n#####\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(4, 2, 2)
-        res = "[Square] (15) 2/2 - 4\n"
+        output = "[Square] (15) 2/2 - 4\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(3, 2, 5, 3)
-        res = "[Square] (3) 2/5 - 3\n"
+        output = "[Square] (3) 2/5 - 3\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq.id = 1
         sq.size = 11
-        res = "[Square] (1) 2/5 - 11\n"
+        output = "[Square] (1) 2/5 - 11\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(5, 2, 1)
-        res = "\n  #####\n  #####\n  #####\n  #####\n  #####\n"
+        output = "\n  #####\n  #####\n  #####\n  #####\n  #####\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(3)
-        res = "###\n###\n###\n"
+        output = "###\n###\n###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq.x = 1
-        res = " ###\n ###\n ###\n"
+        output = " ###\n ###\n ###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq.y = 2
-        res = "\n\n ###\n ###\n ###\n"
+        output = "\n\n ###\n ###\n ###\n"
         with patch('sys.stdout', new=StringIO()) as out:
             sq.display()
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
 
     def test_10str(self):
         """ Test __str__ return value """
         sq = Square(5)
-        res = "[Square] (18) 0/0 - 5\n"
+        output = "[Square] (18) 0/0 - 5\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         s2 = Square(3, 7, 1)
-        res = "[Square] (19) 7/1 - 3\n"
+        output = "[Square] (19) 7/1 - 3\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(s2)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(1, 1, 1)
-        res = "[Square] (20) 1/1 - 1\n"
+        output = "[Square] (20) 1/1 - 1\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq = Square(3)
-        res = "[Square] (21) 0/0 - 3"
-        self.assertEqual(str(sq), res)
+        output = "[Square] (21) 0/0 - 3"
+        self.assertEqual(str(sq), output)
 
     def test_11update(self):
         """ Test update method """
         sq = Square(3)
-        res = "[Square] (22) 0/0 - 3\n"
+        output = "[Square] (22) 0/0 - 3\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq.update(5)
-        res = "[Square] (5) 0/0 - 3\n"
+        output = "[Square] (5) 0/0 - 3\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq = Square(3)
-        res = "[Square] (23) 0/0 - 3\n"
+        output = "[Square] (23) 0/0 - 3\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq.update(5)
-        res = "[Square] (5) 0/0 - 3\n"
+        output = "[Square] (5) 0/0 - 3\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq = Square(1)
-        res = "[Square] (24) 0/0 - 1\n"
+        output = "[Square] (24) 0/0 - 1\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq.update(2, 2, 2, 2)
-        res = "[Square] (2) 2/2 - 1\n"
+        output = "[Square] (2) 2/2 - 1\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq.update(y=3)
-        res = "[Square] (2) 2/3 - 1\n"
+        output = "[Square] (2) 2/3 - 1\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq.update(id=1, size=10)
-        res = "[Square] (1) 2/3 - 1\n"
+        output = "[Square] (1) 2/3 - 1\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq = Square(10)
-        res = "[Square] (25) 0/0 - 10\n"
+        output = "[Square] (25) 0/0 - 10\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         dic = {'size': 3, 'y': 5}
         sq.update(**dic)
-        res = "[Square] (25) 0/5 - 10\n"
+        output = "[Square] (25) 0/5 - 10\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         sq = Square(7)
-        res = "[Square] (26) 0/0 - 7\n"
+        output = "[Square] (26) 0/0 - 7\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
-            self.assertEqual(str_out.getvalue(), res)
+            self.assertEqual(str_out.getvalue(), output)
         dic = {'id': 10, 'x': '5', 'y': 5}
         with self.assertRaises(TypeError):
             sq.update(**dic)
@@ -236,33 +235,33 @@ class TestSquareMethods(unittest.TestCase):
     def test_12to_dictionary(self):
         """ Test dictionary returned """
         sq = Square(1, 2, 3)
-        res = "[Square] (27) 2/3 - 1\n"
+        output = "[Square] (27) 2/3 - 1\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.width, 1)
         self.assertEqual(sq.height, 1)
         self.assertEqual(sq.x, 2)
         self.assertEqual(sq.y, 3)
         self.assertEqual(sq.id, 27)
-        res = "<class 'dict'>\n"
+        output = "<class 'dict'>\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(type(sq.to_dictionary()))
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
 
     def test_13to_dictionary_2(self):
         """ Test dictionary returned """
         sq = Square(2, 2, 2)
-        res = "[Square] (28) 2/2 - 2\n"
+        output = "[Square] (28) 2/2 - 2\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         sq2 = Square(5)
-        res = "[Square] (29) 0/0 - 5\n"
+        output = "[Square] (29) 0/0 - 5\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(sq2)
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
         dct = sq.to_dictionary()
         sq2.update(**dct)
         self.assertEqual(sq.width, sq2.width)
@@ -270,13 +269,13 @@ class TestSquareMethods(unittest.TestCase):
         self.assertEqual(sq.x, sq2.x)
         self.assertEqual(sq.y, sq2.y)
         self.assertEqual(sq.id, sq2.id)
-        res = "<class 'dict'>\n"
+        output = "<class 'dict'>\n"
         with patch('sys.stdout', new=StringIO()) as out:
             print(type(dct))
-            self.assertEqual(out.getvalue(), res)
+            self.assertEqual(out.getvalue(), output)
 
     def test_14value_square(self):
-        """ Test value pased to Square """
+        """ Test value passed to Square """
         with self.assertRaises(ValueError):
             Square(-1)
 
