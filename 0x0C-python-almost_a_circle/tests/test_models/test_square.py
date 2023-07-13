@@ -251,34 +251,68 @@ class TestSquareMethods(unittest.TestCase):
             print(type(sq.to_dictionary()))
             self.assertEqual(out.getvalue(), res)
 
-    # def test_to_dictionary_2(self):
-    #     """ Test dictionary returned """
-    #     s1 = Square(2, 2, 2)
-    #     res = "[Square] (1) 2/2 - 2\n"
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(s1)
-    #         self.assertEqual(str_out.getvalue(), res)
-    #
-    #     s2 = Square(5)
-    #     res = "[Square] (2) 0/0 - 5\n"
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(s2)
-    #         self.assertEqual(str_out.getvalue(), res)
-    #
-    #     s1_dictionary = s1.to_dictionary()
-    #     s2.update(**s1_dictionary)
-    #
-    #     self.assertEqual(s1.width, s2.width)
-    #     self.assertEqual(s1.height, s2.height)
-    #     self.assertEqual(s1.x, s2.x)
-    #     self.assertEqual(s1.y, s2.y)
-    #     self.assertEqual(s1.id, s2.id)
-    #
-    #     res = "<class 'dict'>\n"
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(type(s1_dictionary))
-    #         self.assertEqual(str_out.getvalue(), res)
-    #
+    def test_13to_dictionary_2(self):
+        """ Test dictionary returned """
+        sq = Square(2, 2, 2)
+        res = "[Square] (28) 2/2 - 2\n"
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(sq)
+            self.assertEqual(out.getvalue(), res)
+        sq2 = Square(5)
+        res = "[Square] (29) 0/0 - 5\n"
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(sq2)
+            self.assertEqual(out.getvalue(), res)
+        dct = sq.to_dictionary()
+        sq2.update(**dct)
+        self.assertEqual(sq.width, sq2.width)
+        self.assertEqual(sq.height, sq2.height)
+        self.assertEqual(sq.x, sq2.x)
+        self.assertEqual(sq.y, sq2.y)
+        self.assertEqual(sq.id, sq2.id)
+        res = "<class 'dict'>\n"
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(type(dct))
+            self.assertEqual(out.getvalue(), res)
+
+    def test_14value_square(self):
+        """ Test value pased to Square """
+        with self.assertRaises(ValueError):
+            Square(-1)
+
+    def test_15create(self):
+        """ Test create method """
+        dictionary = {'id': 89}
+        sq = Square.create(**dictionary)
+        self.assertEqual(sq.id, 89)
+        dictionary = {'id': 89, 'size': 1}
+        sq = Rectangle.create(**dictionary)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.size, 1)
+        dictionary = {'id': 89, 'size': 1, 'x': 2}
+        sq = Rectangle.create(**dictionary)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.size, 1)
+        self.assertEqual(sq.x, 2)
+        dictionary = {'id': 89, 'size': 1, 'x': 2, 'y': 3}
+        sq = Rectangle.create(**dictionary)
+        self.assertEqual(sq.id, 89)
+        self.assertEqual(sq.size, 1)
+        self.assertEqual(sq.x, 2)
+        self.assertEqual(sq.y, 3)
+
+    # def test_load_from_file(self):
+    #     """ Test load JSON file """
+    #     load_file = Square.load_from_file()
+    #     self.assertEqual(load_file, load_file)
+    #     s1 = Square(5)
+    #     s2 = Square(8, 2, 5)
+    #     linput = [s1, s2]
+    #     Square.save_to_file(linput)
+    #     loutput = Square.load_from_file()
+    #     for i in range(len(linput)):
+    #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+
     # def test_dict_to_json(self):
     #     """ Test Dictionary to JSON string """
     #     s1 = Square(2)
@@ -310,55 +344,3 @@ class TestSquareMethods(unittest.TestCase):
     #         res2 = file.read()
     #
     #     self.assertEqual(res, res2)
-    #
-    # def test_value_square(self):
-    #     """ Test value pased to Square """
-    #     with self.assertRaises(ValueError):
-    #         s1 = Square(-1)
-    #
-    # def test_create(self):
-    #     """ Test create method """
-    #     dictionary = {'id': 89}
-    #     s1 = Square.create(**dictionary)
-    #     self.assertEqual(s1.id, 89)
-    #
-    # def test_create_2(self):
-    #     """ Test create method """
-    #     dictionary = {'id': 89, 'size': 1}
-    #     s1 = Rectangle.create(**dictionary)
-    #     self.assertEqual(s1.id, 89)
-    #     self.assertEqual(s1.size, 1)
-    #
-    # def test_create_3(self):
-    #     """ Test create method """
-    #     dictionary = {'id': 89, 'size': 1, 'x': 2}
-    #     s1 = Rectangle.create(**dictionary)
-    #     self.assertEqual(s1.id, 89)
-    #     self.assertEqual(s1.size, 1)
-    #     self.assertEqual(s1.x, 2)
-    #
-    # def test_create_4(self):
-    #     """ Test create method """
-    #     dictionary = {'id': 89, 'size': 1, 'x': 2, 'y': 3}
-    #     s1 = Rectangle.create(**dictionary)
-    #     self.assertEqual(s1.id, 89)
-    #     self.assertEqual(s1.size, 1)
-    #     self.assertEqual(s1.x, 2)
-    #     self.assertEqual(s1.y, 3)
-    #
-    # def test_load_from_file(self):
-    #     """ Test load JSON file """
-    #     load_file = Square.load_from_file()
-    #     self.assertEqual(load_file, load_file)
-    #
-    # def test_load_from_file_2(self):
-    #     """ Test load JSON file """
-    #     s1 = Square(5)
-    #     s2 = Square(8, 2, 5)
-    #
-    #     linput = [s1, s2]
-    #     Square.save_to_file(linput)
-    #     loutput = Square.load_from_file()
-    #
-    #     for i in range(len(linput)):
-    #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
