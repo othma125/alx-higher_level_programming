@@ -16,3 +16,11 @@ class Base:
             self.id = Base.__nb_objects
         else:
             self.id = identifier
+
+    @classmethod
+    def create(cls, **dictionary):
+        """ create class method """
+        obj = cls(1) if cls.__name__ == 'Base' else cls(1, 1)
+        if dictionary is not None and len(dictionary) > 0:
+            obj.update(**dictionary)
+        return obj

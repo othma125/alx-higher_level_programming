@@ -2,13 +2,10 @@
 """ Module for test Base class """
 import unittest
 
-# import os
 
-# Base = __import__('models.base').Base
 from models.base import Base
 # from models.rectangle import Rectangle
 # from models.square import Square
-# from io import StringIO
 from unittest import TestCase
 
 

@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Module that contains class Rectangle,
-inheritance of class Base
+""" class Rectangle module
 """
 from models.base import Base
 
@@ -10,11 +9,25 @@ class Rectangle(Base):
 
     def __init__(self, width, height, x=0, y=0, identifier=None):
         """ constructor """
-        self.__width = None
-        self.width(width)
-        self.__height = None
-        self.height(height)
+        if type(width) is not int:
+            raise TypeError("width must be an integer")
+        if width <= 0:
+            raise ValueError("width must be > 0")
+        self.__width = width
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
+        if height <= 0:
+            raise ValueError("height must be > 0")
+        self.__height = height
+        if type(x) is not int:
+            raise TypeError("x must be an integer")
+        if x < 0:
+            raise ValueError("x must be >= 0")
         self.__x = x
+        if type(y) is not int:
+            raise TypeError("y must be an integer")
+        if y < 0:
+            raise ValueError("y must be >= 0")
         self.__y = y
         super().__init__(identifier)
 
@@ -88,12 +101,12 @@ class Rectangle(Base):
 
     def __str__(self):
         """ str special method """
-        str_rectangle = "[Rectangle] "
-        id = f"({self.id}) "
+        str_rectangle = f"[{self.__class__.__name__}] "
+        identifier = f"({self.id}) "
         x_y = f"{self.__x}/{self.__y} - "
-        h_h = f"{self.__width}/{self.__height}"
+        w_h = f"{self.__width}/{self.__height}"
 
-        return str_rectangle + id + x_y + h_h
+        return str_rectangle + identifier + x_y + w_h
 
     def update(self, *args, **kwargs):
         """ update method """
@@ -107,5 +120,4 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """ returns a dictionary with properties """
-        return {key: getattr(self, key) for key
-                in ['id', 'width', 'height', 'x', 'y']}
+        return self.__dict__
