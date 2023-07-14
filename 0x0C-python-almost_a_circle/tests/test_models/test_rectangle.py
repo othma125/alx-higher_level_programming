@@ -264,8 +264,10 @@ class TestRectangleMethods(TestCase):
             self.assertEqual(file.read(), '[]')
         r = Rectangle(2, 2)
         Rectangle.save_to_file([r])
+        output = '[{\"id\": 31, '
+        output += '\"width\": 2, \"height\": 2, \"x\": 0, \"y\": 0}]'
         with open("Rectangle.json", "r") as file:
-            self.assertEqual(file.read(), '[{\"id\": 31, \"width\": 2, \"height\": 2, \"x\": 0, \"y\": 0}]')
+            self.assertEqual(file.read(), output)
 
     def test_18from_json_string(self):
         """ Test JSON file """
@@ -273,29 +275,35 @@ class TestRectangleMethods(TestCase):
             {'height': 4, 'width': 10, 'id': 89},
             {'height': 7, 'width': 1, 'id': 7}
         ]
-        output = '[<class \'list\'>] [{\'height\': 4, \'width\': 10, \'id\': 89}, {\'height\': 7, \'width\': 1, \'id\': 7}]'
+        output = '[<class \'list\'>] '
+        output += '[{\'height\': 4, \'width\': 10, \'id\': 89}, '
+        output += '{\'height\': 7, \'width\': 1, \'id\': 7}]'
         with patch('sys.stdout', new=StringIO()) as out:
             print(f"[{type(list_input)}] {list_input}", end='')
             self.assertEqual(out.getvalue(), output)
         json_list_input = Rectangle.to_json_string(list_input)
-        output = '[<class \'str\'>] [{\"height\": 4, \"width\": 10, \"id\": 89}, {\"height\": 7, \"width\": 1, \"id\": 7}]'
+        output = '[<class \'str\'>] '
+        output += '[{\"height\": 4, \"width\": 10, \"id\": 89}, '
+        output += '{\"height\": 7, \"width\": 1, \"id\": 7}]'
         with patch('sys.stdout', new=StringIO()) as out:
             print(f"[{type(json_list_input)}] {json_list_input}", end='')
             self.assertEqual(out.getvalue(), output)
         list_output = Rectangle.from_json_string(json_list_input)
-        output = '[<class \'list\'>] [{\'height\': 4, \'width\': 10, \'id\': 89}, {\'height\': 7, \'width\': 1, \'id\': 7}]'
+        output = '[<class \'list\'>] '
+        output += '[{\'height\': 4, \'width\': 10, \'id\': 89}, '
+        output += '{\'height\': 7, \'width\': 1, \'id\': 7}]'
         with patch('sys.stdout', new=StringIO()) as out:
             print(f"[{type(list_output)}] {list_output}", end='')
             self.assertEqual(out.getvalue(), output)
 
-    # def test_19load_from_file(self):
-    #     """ Test load JSON file """
-    #     load_file = Rectangle.load_from_file()
-    #     self.assertEqual(load_file, [])
-    #     r1 = Rectangle(5, 5)
-    #     r2 = Rectangle(8, 2, 5, 5)
-    #     linput = [r1, r2]
-    #     Rectangle.save_to_file(linput)
-    #     loutput = Rectangle.load_from_file()
-    #     for i in range(len(linput)):
-    #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
+    def test_19load_from_file(self):
+        """ Test load JSON file """
+        load_file = Rectangle.load_from_file()
+        self.assertEqual(type(load_file), list)
+        r1 = Rectangle(5, 5)
+        r2 = Rectangle(8, 2, 5, 5)
+        inputs = [r1, r2]
+        Rectangle.save_to_file(inputs)
+        outputs = Rectangle.load_from_file()
+        for r, rr in zip(inputs, outputs):
+            self.assertEqual(r.__str__(), rr.__str__())

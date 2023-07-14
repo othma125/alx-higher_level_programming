@@ -310,49 +310,7 @@ class TestSquareMethods(TestCase):
             self.assertEqual(file.read(), '[]')
         sq = Square(2, 2)
         Square.save_to_file([sq])
+        output = '[{\"id\": 34, '
+        output += '\"size\": 2, \"x\": 2, \"y\": 0}]'
         with open("Square.json", "r") as file:
-            self.assertEqual(file.read(), '[{\"id\": 34, \"size\": 2, \"x\": 2, \"y\": 0}]')
-
-    # def test_load_from_file(self):
-    #     """ Test load JSON file """
-    #     load_file = Square.load_from_file()
-    #     self.assertEqual(load_file, load_file)
-    #     s1 = Square(5)
-    #     s2 = Square(8, 2, 5)
-    #     linput = [s1, s2]
-    #     Square.save_to_file(linput)
-    #     loutput = Square.load_from_file()
-    #     for i in range(len(linput)):
-    #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
-
-    # def test_dict_to_json(self):
-    #     """ Test Dictionary to JSON string """
-    #     s1 = Square(2)
-    #     dictionary = s1.to_dictionary()
-    #     json_dictionary = Base.to_json_string([dictionary])
-    #     res = "[{}]\n".format(dictionary.__str__())
-    #
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(json_dictionary)
-    #         self.assertEqual(str_out.getvalue(), res.replace("'", "\""))
-    #
-    # def test_json_file(self):
-    #     """ Test Dictionary to JSON string """
-    #     s1 = Square(2)
-    #     dictionary = s1.to_dictionary()
-    #     json_dictionary = Base.to_json_string([dictionary])
-    #     res = "[{}]\n".format(dictionary.__str__())
-    #     res = res.replace("'", "\"")
-    #
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(json_dictionary)
-    #         self.assertEqual(str_out.getvalue(), res)
-    #
-    #     Square.save_to_file([s1])
-    #     res = "[{}]".format(dictionary.__str__())
-    #     res = res.replace("'", "\"")
-    #
-    #     with open("Square.json", "r") as file:
-    #         res2 = file.read()
-    #
-    #     self.assertEqual(res, res2)
+            self.assertEqual(file.read(), output)
