@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Module for test Rectangle class """
 from io import StringIO
+from json import dumps
+from os import remove
 from unittest import TestCase
 from unittest.mock import patch
 from models.rectangle import Rectangle
@@ -32,7 +34,7 @@ class TestRectangleMethods(TestCase):
         self.assertFalse(r is Rectangle(1, 1))
         self.assertFalse(r.id == Rectangle(1, 1).id)
         r = Rectangle(1, 1)
-        self.assertTrue(isinstance(r, Base))
+        self.assertIsInstance(r, Base)
         r = Rectangle(4, 5)
         self.assertEqual(r.area(), 20)
         r = Rectangle(2, 2)
@@ -243,7 +245,29 @@ class TestRectangleMethods(TestCase):
         self.assertEqual(r1.x, 3)
         self.assertEqual(r1.y, 4)
 
-    # def test_16load_from_file(self):
+    def test_16dict_to_json(self):
+        """ Test Dictionary to JSON string """
+        r = Rectangle(2, 2)
+        dictionary = r.to_dictionary()
+        output = f"[{dumps(dictionary)}]\n"
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(Base.to_json_string([dictionary]))
+            self.assertEqual(out.getvalue(), output)
+
+    def test_17save_to_file(self):
+        """ Test JSON file """
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        r = Rectangle(2, 2)
+        Rectangle.save_to_file([r])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), '[{\"id\": 31, \"width\": 2, \"height\": 2, \"x\": 0, \"y\": 0}]')
+
+    # def test_18load_from_file(self):
     #     """ Test load JSON file """
     #     load_file = Rectangle.load_from_file()
     #     self.assertEqual(load_file, [])
@@ -254,14 +278,3 @@ class TestRectangleMethods(TestCase):
     #     loutput = Rectangle.load_from_file()
     #     for i in range(len(linput)):
     #         self.assertEqual(linput[i].__str__(), loutput[i].__str__())
-
-    # def test_17dict_to_json(self):
-    #     """ Test Dictionary to JSON string """
-    #     r1 = Rectangle(2, 2)
-    #     dictionary = r1.to_dictionary()
-    #     json_dictionary = Base.to_json_string([dictionary])
-    #     res = "[{}]\n".format(dictionary.__str__())
-    #
-    #     with patch('sys.stdout', new=StringIO()) as str_out:
-    #         print(json_dictionary)
-    #         self.assertEqual(str_out.getvalue(), res.replace("'", "\""))

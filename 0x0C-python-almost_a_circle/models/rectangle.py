@@ -120,4 +120,5 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """ returns a dictionary with properties """
-        return {k: getattr(k) for k in ('id', 'width', 'height', 'x', 'y')}
+        return {k: getattr(self, k)
+                for k in ('id', 'width', 'height', 'x', 'y')}

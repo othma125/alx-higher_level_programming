@@ -35,16 +35,16 @@ class TestSquareMethods(TestCase):
     def test_01new_squares(self):
         """ Test new squares """
         sq = Square(1, 1)
-        self.assertFalse(sq is Square(1, 1))
+        self.assertIsNot(sq, Square(1, 1))
         self.assertFalse(sq.id == Square(1, 1).id)
 
     def test_02is_Base_instance(self):
         """ Test Square is a Base instance """
-        self.assertTrue(isinstance(Square(1), Base))
+        self.assertIsInstance(Square(1), Base)
 
     def test_03is_Rectangle_instance(self):
         """ Test Square is a Rectangle instance """
-        self.assertTrue(isinstance(Square(1), Rectangle))
+        self.assertIsInstance(Square(1), Rectangle)
 
     def test_04incorrect_amount_attrs(self):
         """ Test error raise with no args passed """
@@ -299,6 +299,19 @@ class TestSquareMethods(TestCase):
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 2)
         self.assertEqual(sq.y, 3)
+
+    def test_16save_to_file(self):
+        """ Test JSON file """
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        sq = Square(2, 2)
+        Square.save_to_file([sq])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[{\"id\": 34, \"size\": 2, \"x\": 2, \"y\": 0}]')
 
     # def test_load_from_file(self):
     #     """ Test load JSON file """
