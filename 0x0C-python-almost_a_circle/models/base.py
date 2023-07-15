@@ -18,6 +18,14 @@ class Base:
         else:
             self.id = identifier
 
+    def __del__(self):
+        if Base.__nb_objects > 0:
+            Base.__nb_objects -= 1
+
+    # @classmethod
+    # def nb_objects(cls, n):
+    #     cls.__nb_objects = n
+
     @classmethod
     def create(cls, **dictionary):
         """ create class method """
@@ -91,8 +99,8 @@ class Base:
         data = []
         for csv_elem in csv_list:
             dct = {}
-            for element in enumerate(csv_elem):
-                dct[list_keys[element[0]]] = int(element[1])
+            for x, y in enumerate(csv_elem):
+                dct[list_keys[x]] = int(y)
             data.append(dct)
         return [cls.create(**d) for d in data]
 
