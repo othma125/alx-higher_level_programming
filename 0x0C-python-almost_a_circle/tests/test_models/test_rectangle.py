@@ -11,9 +11,9 @@ from models.base import Base
 class TestRectangleMethods(TestCase):
     """ Suite to test Rectangle class """
 
-    # def setUp(self):
-    #     """ Method invoked for each test """
-    #     Base.nb_objects(0)
+    def setUp(self):
+        """ Method invoked for each test """
+        Base._Base__nb_objects = 0
 
     # def tearDown(self):
     #     """ Method invoked for each test """
