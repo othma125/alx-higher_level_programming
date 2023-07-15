@@ -22,10 +22,6 @@ class Base:
         if Base.__nb_objects > 0:
             Base.__nb_objects -= 1
 
-    # @classmethod
-    # def nb_objects(cls, n):
-    #     cls.__nb_objects = n
-
     @classmethod
     def create(cls, **dictionary):
         """ create class method """
