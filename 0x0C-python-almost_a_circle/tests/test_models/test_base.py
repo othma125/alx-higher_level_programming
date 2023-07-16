@@ -11,11 +11,11 @@ class TestBaseMethods(TestCase):
 
     def setUp(self):
         """ Method invoked for each test """
-        Base._Base__nb_objects = 0
+        Base.__nb_objects = 0
 
-    # def tearDown(self):
-    #     """ Method invoked for each test """
-    #     Base.__nb_objects = 7
+    def tearDown(self):
+        """ Method invoked for each test """
+        Base.__nb_objects = 0
 
     def test_base_00_id(self):
         """ Test assigned id """

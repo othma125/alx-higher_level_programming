@@ -13,11 +13,11 @@ class TestRectangleMethods(TestCase):
 
     def setUp(self):
         """ Method invoked for each test """
-        Base._Base__nb_objects = 0
+        Base.__nb_objects = 0
 
-    # def tearDown(self):
-    #     """ Method invoked for each test """
-    #     Base.__nb_objects = 0
+    def tearDown(self):
+        """ Method invoked for each test """
+        Base.__nb_objects = 0
 
     def test_rectangle_01_new_rectangle(self):
         """ Test new rectangle """
@@ -307,3 +307,23 @@ class TestRectangleMethods(TestCase):
         outputs = Rectangle.load_from_file()
         for r, rr in zip(inputs, outputs):
             self.assertEqual(str(r), str(rr))
+
+    def test_rectangle_15_csv(self):
+        """ Test csv file """
+        Rectangle.save_to_file_csv(None)
+        with open("Rectangle.csv", "r") as file:
+            self.assertEqual(file.read(), 'id,width,height,x,y\n')
+        Rectangle.save_to_file([])
+        with open("Rectangle.csv", "r") as file:
+            self.assertEqual(file.read(), 'id,width,height,x,y\n')
+        r = Rectangle(2, 2)
+        Rectangle.save_to_file_csv([r])
+        output = 'id,width,height,x,y\n1,2,2,0,0\n'
+        with open("Rectangle.csv", "r") as file:
+            self.assertEqual(file.read(), output)
+        list_rec = Rectangle.load_from_file_csv()
+        output = '[Rectangle] (1) 0/0 - 2/2\n'
+        with patch('sys.stdout', new=StringIO()) as out:
+            for r in list_rec:
+                print(r)
+            self.assertEqual(out.getvalue(), output)

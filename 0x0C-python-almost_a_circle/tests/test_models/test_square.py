@@ -13,11 +13,11 @@ class TestSquareMethods(TestCase):
 
     def setUp(self):
         """ Method invoked for each test """
-        Base._Base__nb_objects = 0
-    #
-    # def tearDown(self):
-    #     """ Method invoked for each test """
-    #     Base.__nb_objects = 0
+        Base.__nb_objects = 0
+
+    def tearDown(self):
+        """ Method invoked for each test """
+        Base.__nb_objects = 0
 
     def test_square_01_new_square(self):
         """ Test new square """
@@ -315,3 +315,64 @@ class TestSquareMethods(TestCase):
         output += '\"size\": 2, \"x\": 2, \"y\": 0}]'
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), output)
+
+    def test_square_17_from_json_string(self):
+        """ Test JSON file """
+        list_input = [
+            {"size": 4, "id": 89},
+            {"size": 7, "id": 7}
+        ]
+        output = '[<class \'list\'>] '
+        output += f'[{list_input[0]}, '
+        output += f'{list_input[1]}]\n'
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(f"[{type(list_input)}] {list_input}")
+            self.assertEqual(out.getvalue(), output)
+        json_list_input = Square.to_json_string(list_input)
+        output = '[<class \'str\'>] '
+        output += '[{\"size\": 4, \"id\": 89}, '
+        output += '{\"size\": 7, \"id\": 7}]\n'
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(f"[{type(json_list_input)}] {json_list_input}")
+            self.assertEqual(out.getvalue(), output)
+        list_output = Square.from_json_string(json_list_input)
+        output = '[<class \'list\'>] '
+        output += f'[{list_output[0]}, '
+        output += f'{list_output[1]}]\n'
+        with patch('sys.stdout', new=StringIO()) as out:
+            print(f"[{type(list_output)}] {list_output}")
+            self.assertEqual(out.getvalue(), output)
+
+    def test_square_18_load_from_file(self):
+        """ Test load JSON file """
+        load_file = Square.load_from_file()
+        self.assertEqual(type(load_file), list)
+        r1 = Square(5, 5)
+        r2 = Square(8, 2, 5, 5)
+        inputs = [r1, r2]
+        Square.save_to_file(inputs)
+        outputs = Square.load_from_file()
+        for r, rr in zip(inputs, outputs):
+            self.assertEqual(str(r), str(rr))
+
+    def test_square_19_csv(self):
+        """ Test csv file """
+        Square.save_to_file_csv(None)
+        with open("Square.csv", "r") as file:
+            self.assertEqual(file.read(), 'id,size,x,y\n')
+        Square.save_to_file([])
+        with open("Square.csv", "r") as file:
+            self.assertEqual(file.read(), 'id,size,x,y\n')
+        r = Square(2, 2)
+        Square.save_to_file_csv([r])
+        output = 'id,size,x,y\n1,2,2,0\n'
+        with open("Square.csv", "r") as file:
+            self.assertEqual(file.read(), output)
+        with open("Square.csv", "r") as file:
+            self.assertEqual(file.read(), output)
+        list_sq = Square.load_from_file_csv()
+        output = '[Square] (1) 2/0 - 2\n'
+        with patch('sys.stdout', new=StringIO()) as out:
+            for sq in list_sq:
+                print(sq)
+            self.assertEqual(out.getvalue(), output)

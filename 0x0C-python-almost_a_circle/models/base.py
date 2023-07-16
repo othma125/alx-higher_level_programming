@@ -66,39 +66,35 @@ class Base:
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """ Method that saves a CSV file """
-        if cls.__name__ == "Rectangle":
-            keys = ['id', 'width', 'height', 'x', 'y']
+        if cls.__name__ == 'Rectangle':
+            keys = ('id', 'width', 'height', 'x', 'y')
         else:
-            keys = ['id', 'size', 'x', 'y']
-        data = []
-        if list_objs is not None:
-            for obj in list_objs:
-                list_dic = [obj.to_dictionary()[key] for key in keys]
-                data.append(list_dic)
+            keys = ('id', 'size', 'x', 'y')
         with open(f"{cls.__name__}.csv", 'w') as f:
-            writer = csv.writer(f)
-            writer.writerows(data)
+            writer = csv.DictWriter(f, fieldnames=keys)
+            writer.writeheader()
+            if list_objs is not None:
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
         """ Method that loads a CSV file """
-        filename = "{}.csv".format(cls.__name__)
-        if path.exists(filename) is False:
-            return []
+        filename = f"{cls.__name__}.csv"
+        objects = []
+        if not path.exists(filename):
+            return objects
         with open(filename, 'r') as f:
             reader = csv.reader(f)
-            csv_list = list(reader)
-        if cls.__name__ == "Rectangle":
-            list_keys = ['id', 'width', 'height', 'x', 'y']
-        else:
-            list_keys = ['id', 'size', 'x', 'y']
-        data = []
-        for csv_elem in csv_list:
-            dct = {}
-            for x, y in enumerate(csv_elem):
-                dct[list_keys[x]] = int(y)
-            data.append(dct)
-        return [cls.create(**d) for d in data]
+            c = True
+            for row in reader:
+                if c:
+                    c = False
+                    keys = row[:]
+                else:
+                    dic = {keys[i]: int(value) for i, value in enumerate(row)}
+                    objects.append(cls.create(**dic))
+        return objects
 
     @staticmethod
     def draw(list_rectangles, list_squares):
