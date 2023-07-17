@@ -62,7 +62,7 @@ class TestSquareMethods(TestCase):
         with self.assertRaises(TypeError) as e:
             Square()
         self.assertEqual(str(e.exception), output)
-        output = 'Square.__init__() takes from 2 to 5'
+        output = '__init__() takes from 2 to 5'
         output += " positional arguments but 6 were given"
         with self.assertRaises(TypeError) as e:
             Square(1, 1, 1, 1, 1)
