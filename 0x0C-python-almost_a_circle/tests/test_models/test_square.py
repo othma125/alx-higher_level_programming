@@ -57,10 +57,13 @@ class TestSquareMethods(TestCase):
     def test_square_05_incorrect_amount_attrs(self):
         """ Test error raise with no args passed """
         Base._Base__nb_objects = 0
-        with self.assertRaises(TypeError):
+        output = 'Square.__init__() missing 1 required'
+        output += " positional argument: 'size'"
+        with self.assertRaises(TypeError) as e:
             Square()
-        output = 'Square.__init__() takes from 3 to 6'
-        output += " positional arguments but 7 were given"
+        self.assertEqual(str(e.exception), output)
+        output = 'Square.__init__() takes from 2 to 5'
+        output += " positional arguments but 6 were given"
         with self.assertRaises(TypeError) as e:
             Square(1, 1, 1, 1, 1)
         self.assertEqual(str(e.exception), output)
