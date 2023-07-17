@@ -79,26 +79,34 @@ class TestRectangleMethods(TestCase):
     def test_rectangle_04_valid_attrs(self):
         """ Trying to pass a string value """
         Base._Base__nb_objects = 0
-        with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError) as e:
             Rectangle("2", 2, 2, 2, 2)
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(e.exception), "width must be an integer")
+        with self.assertRaises(TypeError) as e:
             Rectangle(2, "2", 2, 2, 2)
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(e.exception), "height must be an integer")
+        with self.assertRaises(TypeError) as e:
             Rectangle(2, 2, "2", 2, 2)
-        with self.assertRaises(TypeError):
+        self.assertEqual(str(e.exception), "x must be an integer")
+        with self.assertRaises(TypeError) as e:
             Rectangle(2, 2, 2, "2", 2)
+        self.assertEqual(str(e.exception), "y must be an integer")
 
     def test_rectangle_05_value_attrs(self):
         """ Trying to pass invalid values """
         Base._Base__nb_objects = 0
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as e:
             Rectangle(0, 1)
-        with self.assertRaises(ValueError):
+        self.assertEqual(str(e.exception), "width must be > 0")
+        with self.assertRaises(ValueError) as e:
             Rectangle(1, 0)
-        with self.assertRaises(ValueError):
+        self.assertEqual(str(e.exception), "height must be > 0")
+        with self.assertRaises(ValueError) as e:
             Rectangle(1, 1, -1)
-        with self.assertRaises(ValueError):
+        self.assertEqual(str(e.exception), "x must be >= 0")
+        with self.assertRaises(ValueError) as e:
             Rectangle(1, 1, 1, -1)
+        self.assertEqual(str(e.exception), "y must be >= 0")
 
     def test_rectangle_06_display(self):
         """ Test string printed """
