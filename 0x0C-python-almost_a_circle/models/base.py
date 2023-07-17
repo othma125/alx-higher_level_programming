@@ -28,7 +28,7 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """ create class method """
-        obj = cls(1, 1) if cls.__name__ == 'Rectangle' else cls()
+        obj = cls(1, 1) if cls.__name__ == 'Rectangle' else cls(1)
         obj.update(**dictionary)
         return obj
 
