@@ -3,7 +3,7 @@
 
 
 from models.base import Base
-from unittest import TestCase
+from unittest import TestCase, main
 
 
 class TestBaseMethods(TestCase):
@@ -52,3 +52,7 @@ class TestBaseMethods(TestCase):
         """ Test accessing to private attributes """
         with self.assertRaises(AttributeError):
             Base.nb_objects
+
+
+if __name__ == "__main__":
+    unittest.main()

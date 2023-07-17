@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Module for test Square class """
 from io import StringIO
-from unittest import TestCase
+from unittest import TestCase, main
 from unittest.mock import patch
 from models.square import Square
 from models.rectangle import Rectangle
@@ -406,3 +406,7 @@ class TestSquareMethods(TestCase):
             for sq in list_sq:
                 print(sq)
             self.assertEqual(out.getvalue(), output)
+
+
+if __name__ == "__main__":
+    unittest.main()

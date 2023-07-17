@@ -2,7 +2,7 @@
 """ Module for test Rectangle class """
 from io import StringIO
 from json import dumps
-from unittest import TestCase
+from unittest import TestCase, main
 from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
@@ -353,3 +353,7 @@ class TestRectangleMethods(TestCase):
             for r in list_rec:
                 print(r)
             self.assertEqual(out.getvalue(), output)
+
+
+if __name__ == "__main__":
+    unittest.main()
