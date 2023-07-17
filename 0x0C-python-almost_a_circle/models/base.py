@@ -28,9 +28,8 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """ create class method """
-        obj = cls() if cls.__name__ == 'Base' else cls(1, 1)
-        if dictionary is not None:
-            obj.update(**dictionary)
+        obj = cls(1, 1) if cls.__name__ == 'Rectangle' else cls()
+        obj.update(**dictionary)
         return obj
 
     @staticmethod
