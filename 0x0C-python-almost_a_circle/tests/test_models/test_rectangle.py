@@ -82,7 +82,7 @@ class TestRectangleMethods(TestCase):
         output = 'Rectangle.__init__() takes from 3 to 6'
         output += " positional arguments but 7 were given"
         with self.assertRaises(TypeError) as e:
-            Rectangle(2, 3, 2, 2, 2, 2)
+            Rectangle(2, 2, 2, 2, 2, 2)
         self.assertEqual(str(e.exception), output)
         with self.assertRaises(TypeError) as e:
             Rectangle("2", 2, 2, 2, 2)

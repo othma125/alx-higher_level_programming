@@ -59,8 +59,11 @@ class TestSquareMethods(TestCase):
         Base._Base__nb_objects = 0
         with self.assertRaises(TypeError):
             Square()
-        with self.assertRaises(TypeError):
+        output = 'Square.__init__() takes from 3 to 6'
+        output += " positional arguments but 7 were given"
+        with self.assertRaises(TypeError) as e:
             Square(1, 1, 1, 1, 1)
+        self.assertEqual(str(e.exception), output)
 
     def test_square_06_access_private_attrs(self):
         """ Trying to access to a private attribute """
