@@ -40,7 +40,7 @@ class Base:
         for dic in list_dictionaries:
             if c:
                 json_str += ', '
-            json_str += f'{dic}'
+            json_str += f'{dumps(dic)}'
             c = True
         return json_str + ']'
 
