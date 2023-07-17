@@ -33,14 +33,14 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """ List to JSON string """
-        if list_dictionaries is None or list_dictionaries == "[]":
+        if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         json_str = '['
         c = False
         for dic in list_dictionaries:
             if c:
                 json_str += ', '
-            json_str += f'{str(dic)}'
+            json_str += f'{dumps(dic)}'
             c = True
         return json_str + ']'
 
