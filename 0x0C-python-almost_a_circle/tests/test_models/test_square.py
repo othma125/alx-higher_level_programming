@@ -381,8 +381,8 @@ class TestSquareMethods(TestCase):
         Square.save_to_file([])
         with open("Square.csv", "r") as file:
             self.assertEqual(file.read(), 'id,size,x,y\n')
-        r = Square(2, 2)
-        Square.save_to_file_csv([r])
+        sq = Square(2, 2)
+        Square.save_to_file_csv([sq])
         output = 'id,size,x,y\n1,2,2,0\n'
         with open("Square.csv", "r") as file:
             self.assertEqual(file.read(), output)
@@ -394,3 +394,14 @@ class TestSquareMethods(TestCase):
             for sq in list_sq:
                 print(sq)
             self.assertEqual(out.getvalue(), output)
+        sq = Square(5)
+        self.assertNotIn("size", sq.__dict__)
+        self.assertNotIn("_Square__size", sq.__dict__)
+        dic = {
+            "id": 0,
+            "_Rectangle__width": 1,
+            "_Rectangle__height": 1,
+            "_Rectangle__x": 0,
+            "_Rectangle__y": 0,
+        }
+        self.assertCountEqual(dic, sq.__dict__)
