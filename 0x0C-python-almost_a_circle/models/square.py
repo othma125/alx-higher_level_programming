@@ -9,10 +9,6 @@ class Square(Rectangle):
 
     def __init__(self, size, x=0, y=0, identifier=None):
         """ Initializes instances """
-        if type(size) is not int:
-            raise TypeError("size must be an integer")
-        if size <= 0:
-            raise ValueError("size must be > 0")
         super().__init__(size, size, x, y, identifier)
 
     @property
