@@ -111,7 +111,7 @@ class Rectangle(Base):
     def update(self, *args, **kwargs):
         """ update method """
         if args is not None and len(args) > 0:
-            keys = ['x', 'width', 'id', 'height', 'y']
+            keys = ['id', 'width', 'height', 'x', 'y']
             for key, value in zip(keys, args):
                 setattr(self, key, value)
         elif kwargs is not None and len(kwargs) > 0:
