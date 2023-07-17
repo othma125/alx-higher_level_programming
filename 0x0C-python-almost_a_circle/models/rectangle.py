@@ -116,7 +116,8 @@ class Rectangle(Base):
                 setattr(self, key, value)
         elif kwargs is not None and len(kwargs) > 0:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                if hasattr(self, key):
+                    setattr(self, key, value)
 
     def to_dictionary(self):
         """ returns a dictionary with properties """
