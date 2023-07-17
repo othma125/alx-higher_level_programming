@@ -37,20 +37,20 @@ class Square(Rectangle):
     def update(self, *args, **kwargs):
         """ update method """
         if args is not None and len(args) > 0:
-            list_atr = ['id', 'size', 'x', 'y']
-            for i in range(len(args)):
-                if list_atr[i] == 'size':
-                    setattr(self, 'width', args[i])
-                    setattr(self, 'height', args[i])
+            keys = ['id', 'size', 'x', 'y']
+            for key, value in zip(keys, args):
+                if key == 'size':
+                    setattr(self, 'width', value)
+                    setattr(self, 'height', value)
                 else:
-                    setattr(self, list_atr[i], args[i])
+                    setattr(self, key, value)
         elif kwargs is not None and len(kwargs) > 0:
-            for k, v in kwargs.items():
-                if k == 'size':
-                    setattr(self, 'width', v)
-                    setattr(self, 'height', v)
+            for key, value in kwargs.items():
+                if key == 'size':
+                    setattr(self, 'width', key)
+                    setattr(self, 'height', key)
                 else:
-                    setattr(self, k, v)
+                    setattr(self, key, value)
 
     def to_dictionary(self):
         """ Returns a dictionary with attributes """
