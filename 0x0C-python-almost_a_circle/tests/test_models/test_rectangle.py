@@ -80,6 +80,9 @@ class TestRectangleMethods(TestCase):
         """ Trying to pass a string value """
         Base._Base__nb_objects = 0
         with self.assertRaises(TypeError) as e:
+            Rectangle(2, 3, 2, 2, 2, 2)
+        self.assertEqual(str(e.exception), "width must be an integer")
+        with self.assertRaises(TypeError) as e:
             Rectangle("2", 2, 2, 2, 2)
         self.assertEqual(str(e.exception), "width must be an integer")
         with self.assertRaises(TypeError) as e:
