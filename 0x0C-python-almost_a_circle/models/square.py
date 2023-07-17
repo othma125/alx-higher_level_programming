@@ -54,7 +54,7 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """ Returns a dictionary with attributes """
-        return {k: self.getatt(k) for k in ('id', 'size', 'x', 'y')}
+        return {k: self.getatt(k) for k in ['id', 'size', 'x', 'y']}
 
     def getatt(self, k):
         """ Returns attributes """
