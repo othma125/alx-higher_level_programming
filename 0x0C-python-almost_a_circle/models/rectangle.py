@@ -112,11 +112,11 @@ class Rectangle(Base):
         """ update method """
         if args is not None and len(args) > 0:
             keys = ['x', 'width', 'id', 'height', 'y']
-            for i in range(len(args)):
-                setattr(self, keys[i], args[i])
-        else:
-            for k, v in kwargs.items():
-                setattr(self, k, v)
+            for key, value in zip(keys, args):
+                setattr(self, key, value)
+        elif kwargs is not None and len(kwargs) > 0:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
         """ returns a dictionary with properties """
