@@ -57,7 +57,7 @@ class TestSquareMethods(TestCase):
     def test_square_05_incorrect_amount_attrs(self):
         """ Test error raise with no args passed """
         Base._Base__nb_objects = 0
-        output = 'Square.__init__() missing 1 required'
+        output = '__init__() missing 1 required'
         output += " positional argument: 'size'"
         with self.assertRaises(TypeError) as e:
             Square()
