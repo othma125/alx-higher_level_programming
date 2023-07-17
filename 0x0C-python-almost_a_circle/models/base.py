@@ -28,8 +28,10 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """ create class method """
-        obj = cls() if cls.__name__ == 'Base' else cls(1, 1)
-        obj.update(**dictionary)
+        obj = None
+        if dictionary is not None:
+            obj = cls() if cls.__name__ == 'Base' else cls(1, 1)
+            obj.update(**dictionary)
         return obj
 
     @staticmethod
