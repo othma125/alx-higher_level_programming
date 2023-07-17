@@ -36,7 +36,8 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """ List to JSON string """
-        if list_dictionaries is None or len(list_dictionaries) == 0:
+        if list_dictionaries is None or type(list_dictionaries) != list\
+                or len(list_dictionaries) == 0:
             return "[]"
         return dumps(list_dictionaries)
 
