@@ -79,7 +79,7 @@ class TestRectangleMethods(TestCase):
     def test_rectangle_04_valid_attrs(self):
         """ Trying to pass a string value """
         Base._Base__nb_objects = 0
-        output = 'Rectangle.__init__() takes from 3 to 6'
+        output = '__init__() takes from 3 to 6'
         output += " positional arguments but 7 were given"
         with self.assertRaises(TypeError) as e:
             Rectangle(2, 2, 2, 2, 2, 2)
