@@ -300,16 +300,16 @@ class TestSquareMethods(TestCase):
         sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 89)
         dictionary = {'id': 89, 'size': 1}
-        sq = Rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 89)
         self.assertEqual(sq.size, 1)
         dictionary = {'id': 89, 'size': 1, 'x': 2}
-        sq = Rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 89)
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 2)
         dictionary = {'id': 89, 'size': 1, 'x': 2, 'y': 3}
-        sq = Rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 89)
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 2)
