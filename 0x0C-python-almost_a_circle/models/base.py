@@ -18,9 +18,9 @@ class Base:
         else:
             self.id = identifier
 
-    def __del__(self):
-        if Base.__nb_objects > 0:
-            Base.__nb_objects -= 1
+    # def __del__(self):
+    #     if Base.__nb_objects > 0:
+    #         Base.__nb_objects -= 1
 
     def __eq__(self, other):
         return self.id == other.id
