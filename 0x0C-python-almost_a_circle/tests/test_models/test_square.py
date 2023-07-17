@@ -407,6 +407,22 @@ class TestSquareMethods(TestCase):
                 print(sq)
             self.assertEqual(out.getvalue(), output)
 
+    def test_rectangle_16_doc(self):
+        """
+        Tests for the doc string
+        """
+        import models.square as sq
+        self.assertIsNotNone(sq.__doc__)
+        self.assertFalse(sq.__doc__ == '')
+        self.assertIsNotNone(Square.__init__.__doc__)
+        self.assertFalse(Square.__init__.__doc__ == '')
+        self.assertIsNotNone(Square.__str__.__doc__)
+        self.assertFalse(Square.__str__.__doc__ == '')
+        self.assertIsNotNone(Square.to_dictionary.__doc__)
+        self.assertFalse(Square.to_dictionary.__doc__ == '')
+        self.assertIsNotNone(Square.update.__doc__)
+        self.assertFalse(Square.update.__doc__ == '')
+
 
 if __name__ == "__main__":
     main()

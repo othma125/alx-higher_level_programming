@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Module for test Base class """
 
-
 from models.base import Base
 from unittest import TestCase, main
 
@@ -52,6 +51,16 @@ class TestBaseMethods(TestCase):
         """ Test accessing to private attributes """
         with self.assertRaises(AttributeError):
             Base.nb_objects
+
+    def test_base_04_doc(self):
+        """
+        Tests for the doc string
+        """
+        import models.base as b
+        self.assertIsNotNone(b.__doc__)
+        self.assertFalse(b.__doc__ == '')
+        self.assertIsNotNone(Base.__init__.__doc__)
+        self.assertFalse(Base.__init__.__doc__ == '')
 
 
 if __name__ == "__main__":

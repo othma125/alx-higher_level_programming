@@ -354,6 +354,26 @@ class TestRectangleMethods(TestCase):
                 print(r)
             self.assertEqual(out.getvalue(), output)
 
+    def test_rectangle_16_doc(self):
+        """
+        Tests for the doc string
+        """
+        import models.rectangle as r
+        self.assertIsNotNone(r.__doc__)
+        self.assertFalse(r.__doc__ == '')
+        self.assertIsNotNone(Rectangle.__init__.__doc__)
+        self.assertFalse(Rectangle.__init__.__doc__ == '')
+        self.assertIsNotNone(Rectangle.__str__.__doc__)
+        self.assertFalse(Rectangle.__str__.__doc__ == '')
+        self.assertIsNotNone(Rectangle.to_dictionary.__doc__)
+        self.assertFalse(Rectangle.to_dictionary.__doc__ == '')
+        self.assertIsNotNone(Rectangle.update.__doc__)
+        self.assertFalse(Rectangle.update.__doc__ == '')
+        self.assertIsNotNone(Rectangle.display.__doc__)
+        self.assertFalse(Rectangle.display.__doc__ == '')
+        self.assertIsNotNone(Rectangle.area.__doc__)
+        self.assertFalse(Rectangle.area.__doc__ == '')
+
 
 if __name__ == "__main__":
     main()
