@@ -264,8 +264,8 @@ class TestRectangleMethods(TestCase):
             self.assertEqual(file.read(), '[]')
         r = Rectangle(2, 2)
         Rectangle.save_to_file([r])
-        output = '[{\"id\": 1, '
-        output += '\"width\": 2, \"height\": 2, \"x\": 0, \"y\": 0}]'
+        output = '[{\"x\": 0, '
+        output += '\"width\": 2, \"id\": 1, \"height\": 2, \"y\": 0}]'
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), output)
 
