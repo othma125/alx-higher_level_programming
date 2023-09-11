@@ -5,14 +5,14 @@ if (isNaN(x)) {
   console.log('0');
 } else {
   let biggest = x;
-  let second_biggest = x;
+  let secondBiggest = x;
   for (let i = 2; i < argv.length; i++) {
     if (parseInt(argv[i]) > biggest) {
-      second_biggest = biggest;
+      secondBiggest = biggest;
       biggest = parseInt(argv[i]);
-    } else if (parseInt(argv[i]) > second_biggest) {
-      second_biggest = parseInt(argv[i]);
+    } else if (parseInt(argv[i]) > secondBiggest) {
+      secondBiggest = parseInt(argv[i]);
     }
   }
-  console.log(second_biggest);
+  console.log(secondBiggest);
 }
