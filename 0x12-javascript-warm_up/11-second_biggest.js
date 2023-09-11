@@ -2,7 +2,7 @@
 const { argv } = require('process');
 const x = parseInt(argv[2]);
 if (isNaN(x)) {
-  console.log('0');
+  console.log(0);
 } else {
   let biggest = x;
   let secondBiggest = x;
