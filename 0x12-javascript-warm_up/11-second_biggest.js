@@ -1,7 +1,6 @@
 #!/usr/bin/node
 const { argv } = require('process');
-const x = parseInt(argv[2]);
-if (isNaN(x)) {
+if (argv.length < 4) {
   console.log(0);
 } else {
   let biggest = Number.NEGATIVE_INFINITY;
