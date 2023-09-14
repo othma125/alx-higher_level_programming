@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
-    """ update the State object with id = 2 to “New Mexico” 
+    """ update the State object with id = 2 to “New Mexico”
         to the database hbtn_0e_6_usa
     """
     engine = create_engine(f'mysql+mysqldb://{argv[1]}'
