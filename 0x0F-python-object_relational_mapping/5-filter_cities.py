@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Module that contains a script that lists all cites from the database with the name of states that it belongs to
+""" Module that contains a script that lists all cites from the database
+    with the name of states that it belongs to
 """
 from MySQLdb import connect
 from sys import argv
