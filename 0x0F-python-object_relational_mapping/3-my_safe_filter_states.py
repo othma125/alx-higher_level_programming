@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-""" Module that contains a script that lists all states that match the argument and from MySQL injections
-    hbtn_0e_0_usa
+""" Module that contains a script that lists all states that match
+    the argument and from MySQL injections
 """
 from MySQLdb import connect
 from sys import argv
