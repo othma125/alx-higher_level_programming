@@ -4,11 +4,12 @@
 """
 from MySQLdb import connect
 from sys import argv
+
 if __name__ == '__main__':
     """ The code is not executed when imported
     """
     db = connect(host="localhost", port=3306, user=argv[1],
-    passwd=argv[2], db=argv[3])
+                 passwd=argv[2], db=argv[3])
     with db.cursor() as cursor:
         cursor.execute("SELECT * FROM states ORDER BY id ASC")
         for row in cursor.fetchall():
