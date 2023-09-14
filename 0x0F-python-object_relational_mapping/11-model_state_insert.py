@@ -7,13 +7,14 @@ from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
-    """ Print state id passed in as argument from the database hbtn_0e_6_usa
+    """ add the State object “Louisiana” to the database hbtn_0e_6_usa
     """
     engine = create_engine(f'mysql+mysqldb://{argv[1]}'
                            f':{argv[2]}@localhost/{argv[3]}')
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     with Session() as session:
-        state = session.query(State).order_by(State.id)
-        state = state.filter(State.name == argv[4]).first()
-        print(state.id if state else "Not found")
+        new_state = State(name='Louisiana')
+        session.add(new_state)
+        session.commit()
+        print(new_state.id)
