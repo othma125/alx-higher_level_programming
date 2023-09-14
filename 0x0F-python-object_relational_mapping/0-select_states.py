@@ -10,7 +10,7 @@ if __name__ == '__main__':
     """
     # Open database connection
     with connect(host="localhost", port=3306, user=argv[1],
-                    passwd=argv[2], db=argv[3]) as db:
+    passwd=argv[2], db=argv[3]) as db:
 
         # prepare a cursor object using cursor() method
         with db.cursor() as cursor:
@@ -20,7 +20,6 @@ if __name__ == '__main__':
             # Fetch a single row using fetchone() method.
             rows = cursor.fetchall()
 
-            # print rows
-            for row in rows:
-                print(row)
-    db.close()
+        # print rows
+        for row in rows:
+            print(row)
