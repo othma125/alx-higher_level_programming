@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Module that contains a script that lists all states from the database
-    hbtn_0e_0_usa
+""" Module that contains a script that lists all cites from the database with the name of states that it belongs to
 """
 from MySQLdb import connect
 from sys import argv
@@ -11,7 +10,10 @@ if __name__ == '__main__':
     db = connect(host="localhost", port=3306, user=argv[1],
                  passwd=argv[2], db=argv[3])
     with db.cursor() as cursor:
-        cursor.execute("SELECT * FROM states ORDER BY id")
+        query = "SELECT cities.id, cities.name, states.name FROM cities"
+        query += " FROM cities JOIN states ON cities.state_id = states.id"
+        query += "ORDER BY id"
+        cursor.execute(query)
         for row in cursor.fetchall():
             print(row)
     db.close()

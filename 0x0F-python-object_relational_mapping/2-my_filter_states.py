@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Module that contains a script that lists all states from the database
-    hbtn_0e_0_usa
+""" Module that contains a script that lists all states that match the argument
 """
 from MySQLdb import connect
 from sys import argv
