@@ -1,20 +1,23 @@
 #!/usr/bin/python3
-""" Module update the State object with id = 2 to “New Mexico”
-        to the database hbtn_0e_6_usa
+""" Module that creates the State “California” with the
+    City “San Francisco” from the database hbtn_0e_100_usa
 """
 from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
+from model_city import City
 
 if __name__ == "__main__":
-    """ update the State object with id = 2 to “New Mexico”
-        to the database hbtn_0e_6_usa
+    """ creates the State “California” with the
+        City “San Francisco” from the database hbtn_0e_100_usa
     """
     engine = create_engine(f'mysql+mysqldb://{argv[1]}'
                            f':{argv[2]}@localhost/{argv[3]}')
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     with Session() as session:
-        session.query(State).filter(id == 2).update({State.name: 'New Mexico'})
+        new_state = State(name='California')
+        new_state.cities = [City(name='San Francisco')]
+        session.add(new_state)
         session.commit()
