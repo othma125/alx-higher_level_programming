@@ -5,8 +5,8 @@
 from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
-from model_city import City
+from relationship_state import State
+from relationship_city import Base, City
 
 if __name__ == "__main__":
     """ creates the State “California” with the
