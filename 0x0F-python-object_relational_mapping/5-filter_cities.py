@@ -11,9 +11,9 @@ if __name__ == '__main__':
     db = connect(host="localhost", port=3306, user=argv[1],
                  passwd=argv[2], db=argv[3])
     with db.cursor() as cursor:
-        query = "SELECT cities.name"
-        query += " FROM cities JOIN states ON cities.state_id = states.id"
-        query += "ORDER BY id"
+        query = "SELECT cities.name, states.name"
+        query += " FROM cities INNER JOIN states ON cities.state_id = states.id"
+        query += " ORDER BY cities.id"
         cursor.execute(query)
-        print(', '.join([row for row in cursor.fetchall() if row == argv[4]]))
+        print(', '.join([row[0] for row in cursor.fetchall() if row[1] == argv[4]]))
     db.close()
