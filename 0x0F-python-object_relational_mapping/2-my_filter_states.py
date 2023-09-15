@@ -11,7 +11,9 @@ if __name__ == '__main__':
                  passwd=argv[2], db=argv[3])
     with db.cursor() as cursor:
         query = "SELECT * FROM states"
-        query += f""" WHERE name = '{argv[4].strip("'")}' ORDER BY id"""
+        name = argv[4].strip("\"'")
+        query += f" WHERE name LIKE BINARY '{name}'"
+        query += f" ORDER BY id"
         cursor.execute(query)
         for row in cursor.fetchall():
             print(row)
