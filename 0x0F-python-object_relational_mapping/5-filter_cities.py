@@ -8,12 +8,12 @@ from sys import argv
 if __name__ == '__main__':
     """ The code is not executed when imported
     """
-    db = connect(host="localhost", port=3306, user=argv[1],
-                 passwd=argv[2], db=argv[3])
-    with db.cursor() as cursor:
-        query = "SELECT cities.name, states.name"
-        query += " FROM cities INNER JOIN states ON cities.state_id = states.id"
-        query += " ORDER BY cities.id"
-        cursor.execute(query)
-        print(', '.join([row[0] for row in cursor.fetchall() if row[1] == argv[4]]))
-    db.close()
+    with connect(host="localhost", port=3306, user=argv[1],
+                 passwd=argv[2], db=argv[3]) as db:
+        with db.cursor() as cursor:
+            query = "SELECT cities.name, states.name"
+            query += " FROM cities JOIN states ON cities.state_id = states.id"
+            query += " ORDER BY cities.id"
+            cursor.execute(query)
+            print(', '.join([row[0] for row in cursor.fetchall()
+                             if row[1] == argv[4]]))
