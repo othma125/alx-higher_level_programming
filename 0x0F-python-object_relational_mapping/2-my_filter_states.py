@@ -13,7 +13,7 @@ if __name__ == '__main__':
         query = "SELECT * FROM states"
         name = argv[4].strip("\"'")
         query += f" WHERE name LIKE BINARY '{name}'"
-        query += f" ORDER BY id"
+        query += f" ORDER BY states.id"
         cursor.execute(query)
         for row in cursor.fetchall():
             print(row)
