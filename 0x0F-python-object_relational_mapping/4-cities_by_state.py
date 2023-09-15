@@ -12,8 +12,8 @@ if __name__ == '__main__':
                  passwd=argv[2], db=argv[3])
     with db.cursor() as cursor:
         query = "SELECT cities.id, cities.name, states.name FROM cities"
-        query += " FROM cities JOIN states ON cities.state_id = states.id"
-        query += "ORDER BY id"
+        query += " JOIN states ON cities.state_id = states.id"
+        query += " ORDER BY cities.id"
         cursor.execute(query)
         for row in cursor.fetchall():
             print(row)
