@@ -5,7 +5,7 @@ from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from relationship_state import State
-from relationship_city import City
+from relationship_city import City, Base
 
 if __name__ == "__main__":
     """ lists all lists all City objects from the database hbtn_0e_101_usa
