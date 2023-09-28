@@ -1,0 +1,11 @@
+{
+    "plugins": ["prettier-plugin-python"],
+    "python": {
+      "singleQuote": true,
+      "trailingComma": "all",
+      "semi": false,
+      "printWidth": 88,
+      "tabWidth": 4
+    }
+  }
+  
