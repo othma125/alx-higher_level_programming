@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """"Python script that fetches https://intranet.hbtn.io/status"""
-import urllib.request as rq
+from urllib import request as rq
 
 
 if __name__ == "__main__":
