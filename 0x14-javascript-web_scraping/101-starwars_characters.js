@@ -1,6 +1,5 @@
 #!/usr/bin/node
 const request = require('request');
-const url = 'http://swapi.co/api/films/' + process.argv[2];
 const names = [];
 const printNames = (characters, i) => {
   if (i === characters.length) {
@@ -19,11 +18,14 @@ const printNames = (characters, i) => {
   });
 };
 
-request(url, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  } else {
-    const characters = JSON.parse(body).characters;
-    printNames(characters, 0);
+request(
+  'https://swapi-api.hbtn.io/api/films/' + process.argv[2],
+  (err, response, body) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const characters = JSON.parse(body).characters;
+      printNames(characters, 0);
+    }
   }
-});
+);
