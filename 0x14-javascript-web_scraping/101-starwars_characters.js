@@ -23,6 +23,7 @@ request(url, (error, response, body) => {
   if (error) {
     console.error(error);
   } else {
-    printNames(JSON.parse(body).characters, 0);
+    const characters = JSON.parse(body).characters;
+    printNames(characters, 0);
   }
 });
