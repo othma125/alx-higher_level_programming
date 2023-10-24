@@ -6,9 +6,9 @@ request(url, (error, response, body) => {
   if (error) {
     console.log(error);
   } else {
-    const data_set = JSON.parse(body).results;
+    const dataSet = JSON.parse(body).results;
     let count = 0;
-    for (data of data_set) {
+    for (const data of dataSet) {
       const characters = data.characters;
       for (let j = 0; j < characters.length; j++) {
         if (characters[j].includes('18')) count++;
